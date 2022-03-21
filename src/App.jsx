@@ -1,4 +1,5 @@
 import './App.css';
+import Flixy from "./Flixy.svg";
 
 function App() {
   return (
