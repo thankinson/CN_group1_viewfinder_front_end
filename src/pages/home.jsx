@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Footer } from '../components/footer'
-export const Home = ({user, setUser}) => {
+import Navbar from '../components/navbar'
+export const Home = () => {
 
     useEffect(() => {
         document.title = "Home / ViewFinder"
@@ -9,12 +10,9 @@ export const Home = ({user, setUser}) => {
     
     return (
         <>
-            {/* {!user && <Navigate to='/'/>} */}
-            
-            {/* <Navbar /> GOES HERE */}
-            
-            <form className='movie-search-form'>
-                <input className='movie-search-bar'type='search' placeholder='search for a film...'/>
+            <Navbar />
+            <form>
+                <input type='search' placeholder='search for a film...'/>
                 <button className='search-button' type='submit'>search</button>
             </form>
             
@@ -25,3 +23,4 @@ export const Home = ({user, setUser}) => {
         </>
     )
 }
+//imported L3, uncom L12
