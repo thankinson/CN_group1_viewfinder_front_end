@@ -15,56 +15,72 @@ const { REACT_APP_API_KEY } = process.env;
 export const CollapsibleMovie = ( { moviesArray } ) => {
     const [watchlist, setWatchlist] = useState([]);
     const [movieSearch, setMovieSearch] = useState();
-    const [movieResult, setMovieResult] = useState();
+    const [movieResults, setMovieResults] = useState([]);
+
+        const SearchMovie = async (searchString) => {
+            try {
+                const response = await fetch (`https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_API_KEY}&query=${searchString}`);
+                const movieJSON = await response.json();
+                // const moviesArray = await movieJSON.parse();
+                console.log(movieJSON);
+                setMovieResults(movieJSON.results);
+                console.log(movieResults);
+            } catch (error) {
+                console.log(error);
+            }
+            // return (
+            //     <>
+            //         <p>{movieSearch}</p>
+            //     </>
+            // )
+        }
 
     const MovieItem = ( {movie} ) => {
         const [expanded, setExpanded] = useState(false);
-
-        return (
-            <MovieItemDiv>
-                <MovieItemElementDiv onClick={() => alert("Arrow")}>▼</MovieItemElementDiv>
-                <MovieItemTitle>{movie.title}</MovieItemTitle>
-                <MovieItemElementDiv
-                    onClick={   () =>   {   
-                                            watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
-                                            console.log(watchlist);
-                                        }
-                    }
-                >
-                    ★
-                </MovieItemElementDiv>
-            </MovieItemDiv>
-        )
-    }
-
-    const SearchMovie = async (searchString) => {
-        try {
-            const response = await fetch (`https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_API_KEY}&query=${searchString}`);
-            const movieJSON = await response.json();
-            setMovieResult(movieJSON);
-            console.log(movieResult);
-        } catch (error) {
-            console.log(error);
+        if (expanded) {
+            return (
+                <MovieItemDiv>
+                    <MovieItemElementDiv onClick={() => setExpanded(!expanded)}>▼</MovieItemElementDiv>
+                    <MovieItemTitle>{movie.title} (expanded!)</MovieItemTitle>
+                    <MovieItemElementDiv
+                        onClick={   () =>   {   
+                                                watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
+                                                console.log(watchlist);
+                                            }
+                        }
+                    >
+                        ★
+                    </MovieItemElementDiv>
+                </MovieItemDiv>
+            )
         }
-        // return (
-        //     <>
-        //         <p>{movieSearch}</p>
-        //     </>
-        // )
+        else {
+            return (
+                <MovieItemDiv>
+                    <MovieItemElementDiv  onClick={() => setExpanded(!expanded)}>▼</MovieItemElementDiv>
+                    <MovieItemTitle>{movie.title}</MovieItemTitle>
+                    <MovieItemElementDiv
+                        onClick={   () =>   {   
+                                                watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
+                                                console.log(watchlist);
+                                            }
+                        }
+                    >
+                        ★
+                    </MovieItemElementDiv>
+                </MovieItemDiv>
+            )
+        }
     }
 
     return (
         <MainMovieDiv>
                 {/* setWatchlist([ ...watchlist, movie.title]) */}
-                <MovieSearchDiv onChange={(e) => setMovieSearch(e.target.value)}>
+                <MovieSearchDiv>
                 {/* MovieSearchDiv */}
-                <MovieSearchInput>
-                </MovieSearchInput>
-                <button onClick={(e) => SearchMovie(movieSearch)}>
-                    Search
-                </button>
+                <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} />
             </MovieSearchDiv>
-                { moviesArray.map(
+                { movieResults && movieResults.map(
                         (item, index) => <MovieItem movie = {item} />
                     )
                 }
@@ -74,7 +90,6 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
 
 const MainMovieDiv = styled.div`
     width: 30vw;
-    height: 20vw;
     display: flex;
     flex-direction: column;
     border: black 4px solid;
@@ -93,6 +108,11 @@ const MovieSearchDiv = styled.div`
 const MovieSearchInput = styled.input`
     width: 60%;
     height: 2em;
+`
+
+const Logo = styled.img`
+    height: 100%
+    width: 100%
 `
 // const MovieListDiv = styled.div`
 //     border: black 4px solid;
@@ -119,6 +139,12 @@ const MovieItemElementDiv = styled.div`
     margin: 2px;
     height: 2em;
     width: 2em;
+`
+const MovieItemDetailsDiv = styled.div`
+    border: black 4px solid;
+    margin: 2px;
+    // height: 2em;
+    // width: 2em;
 `
 const MovieItemTitle = styled.p`
     flex: 1;
