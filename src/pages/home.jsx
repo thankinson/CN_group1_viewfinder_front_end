@@ -7,12 +7,13 @@ export const Home = () => {
             {/* <Navbar /> */}
             <form>
                 <input type='search' placeholder='search for a film...'/>
+                <button className='search-button' type='submit'>search</button>
             </form>
             
             <div className='search-results-container'>
                 {/* map thru search results, make collapsable comp for each */}
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }
