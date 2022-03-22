@@ -1,5 +1,8 @@
 import './App.css';
 import Flixy from "./Flixy.svg";
+import { CollapsibleMovie } from "./components/collapsibleMovie";
+
+const tempObjArray = [{title: "The Mummy", actor: "Brendan Fraser"}, ];
 
 function App() {
   return (
@@ -18,6 +21,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <CollapsibleMovie moviesArray={tempObjArray}/>
     </div>
   );
 }
