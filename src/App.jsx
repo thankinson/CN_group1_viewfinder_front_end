@@ -2,12 +2,12 @@ import './App.css';
 import Flixy from "./Flixy.svg";
 import { CollapsibleMovie } from "./components/collapsibleMovie";
 
-const tempObjArray = [{title: "The Mummy", actor: "Brendan Fraser"}, ];
+const tempObjArray = [{title: "The Mummy", actor: "Brendan Fraser"}, {title: "The Mummy Returns", actor: "Brendan Fraser"}, ];
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={Flixy} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -20,7 +20,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
       <CollapsibleMovie moviesArray={tempObjArray}/>
     </div>
   );
