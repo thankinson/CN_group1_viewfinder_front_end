@@ -1,2 +1,6 @@
-//  Watch List
-import Flixy from "./Flixy.svg";
+//  watch list
+
+// useEffect(() => {
+//     document.title = "This is a title"
+//   }, [])
+  

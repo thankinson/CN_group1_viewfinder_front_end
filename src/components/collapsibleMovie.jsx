@@ -5,6 +5,8 @@ import "../globalstyles/styles.css";
 import styled from "styled-components";
 import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
+import Triangle from  "../assets/triangle1.svg";
+import TriangleFill from  "../assets/triangle-fill1.svg";
 
 
 
@@ -21,18 +23,12 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
             try {
                 const response = await fetch (`https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_API_KEY}&query=${searchString}`);
                 const movieJSON = await response.json();
-                // const moviesArray = await movieJSON.parse();
-                console.log(movieJSON);
+
                 setMovieResults(movieJSON.results);
                 console.log(movieResults);
             } catch (error) {
                 console.log(error);
             }
-            // return (
-            //     <>
-            //         <p>{movieSearch}</p>
-            //     </>
-            // )
         }
 
     const MovieItem = ( {movie} ) => {
@@ -40,7 +36,7 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
         if (expanded) {
             return (
                 <MovieItemDiv>
-                    <MovieItemElementDiv onClick={() => setExpanded(!expanded)}>▼</MovieItemElementDiv>
+                    <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
                     <MovieItemTitle>{movie.title} (expanded!)</MovieItemTitle>
                     <MovieItemElementDiv
                         onClick={   () =>   {   
@@ -49,15 +45,31 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
                                             }
                         }
                     >
-                        ★
+                    <Logo src={Star}/>
                     </MovieItemElementDiv>
+                    <MovieItemDetailsDiv>
+                        <ul>
+                            <li>
+                                ghjjgh
+                            </li>
+                            <li>
+
+                            </li>
+                            <li>
+
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </MovieItemDetailsDiv>
                 </MovieItemDiv>
             )
         }
         else {
             return (
                 <MovieItemDiv>
-                    <MovieItemElementDiv  onClick={() => setExpanded(!expanded)}>▼</MovieItemElementDiv>
+                    <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
                     <MovieItemTitle>{movie.title}</MovieItemTitle>
                     <MovieItemElementDiv
                         onClick={   () =>   {   
@@ -66,7 +78,7 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
                                             }
                         }
                     >
-                        ★
+                    <Logo src={Star}/>
                     </MovieItemElementDiv>
                 </MovieItemDiv>
             )
@@ -143,6 +155,7 @@ const MovieItemElementDiv = styled.div`
 const MovieItemDetailsDiv = styled.div`
     border: black 4px solid;
     margin: 2px;
+    flex: 1;
     // height: 2em;
     // width: 2em;
 `
