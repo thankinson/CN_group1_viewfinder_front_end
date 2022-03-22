@@ -49,7 +49,8 @@ export const Login = ({ user, setUser }) => {
                 <input
                     onChange={(event) => setUsername(event.target.value)}
                     placeholder='username'
-                /> <br></br>
+                />
+                <br></br>
                 {!bool && <input
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder='email'
@@ -58,6 +59,7 @@ export const Login = ({ user, setUser }) => {
                     onChange={(event) => setPass(event.target.value)}
                     placeholder='password'
                 /> <br></br>
+                <button className='submit-button' type='submit'>submit</button>
             </form>
 
             { bool ? 
