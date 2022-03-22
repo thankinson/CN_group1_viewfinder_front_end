@@ -1,6 +1,7 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 import { Footer } from '../components/footer'
-export const Home = () => {
+export const Home = ({user, setUser}) => {
 
     useEffect(() => {
         document.title = "Home / ViewFinder"
@@ -8,9 +9,12 @@ export const Home = () => {
     
     return (
         <>
-            {/* <Navbar /> */}
-            <form>
-                <input type='search' placeholder='search for a film...'/>
+            {/* {!user && <Navigate to='/'/>} */}
+            
+            {/* <Navbar /> GOES HERE */}
+            
+            <form className='movie-search-form'>
+                <input className='movie-search-bar'type='search' placeholder='search for a film...'/>
                 <button className='search-button' type='submit'>search</button>
             </form>
             
