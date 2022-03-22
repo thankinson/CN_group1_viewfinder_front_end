@@ -15,6 +15,10 @@ export const Login = ({ user, setUser }) => {
     // This switches between log in or sign up render
     const [bool, setBool] = useState(false);
 
+    useEffect(() => {
+        document.title = "Login / ViewFinder"
+    }, [])
+
     // Try a token login
     useEffect( () => {
         try {
@@ -49,7 +53,8 @@ export const Login = ({ user, setUser }) => {
                 <input
                     onChange={(event) => setUsername(event.target.value)}
                     placeholder='username'
-                /> <br></br>
+                />
+                <br></br>
                 {!bool && <input
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder='email'
@@ -58,6 +63,7 @@ export const Login = ({ user, setUser }) => {
                     onChange={(event) => setPass(event.target.value)}
                     placeholder='password'
                 /> <br></br>
+                <button className='submit-button' type='submit'>submit</button>
             </form>
 
             { bool ? 
