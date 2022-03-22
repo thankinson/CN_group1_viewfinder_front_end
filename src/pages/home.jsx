@@ -1,5 +1,6 @@
 import {useEffect} from 'react'
 import { Footer } from '../components/footer'
+import Navbar from '../components/navbar'
 export const Home = () => {
 
     useEffect(() => {
@@ -8,7 +9,7 @@ export const Home = () => {
     
     return (
         <>
-            {/* <Navbar /> */}
+            <Navbar />
             <form>
                 <input type='search' placeholder='search for a film...'/>
                 <button className='search-button' type='submit'>search</button>
@@ -21,3 +22,4 @@ export const Home = () => {
         </>
     )
 }
+//imported L3, uncom L12
