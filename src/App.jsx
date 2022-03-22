@@ -4,7 +4,7 @@ import { Login } from "./pages/login";
 import { Home } from "./pages/home";
 import { UserSettings } from "./pages/userSettings";
 import { WatchList } from "./pages/watchList";
-//import Flixy from "./Flixy.svg";
+import "./globalstyles/styles.css";
 
 function App() {
     const [user, setUser] = useState();
