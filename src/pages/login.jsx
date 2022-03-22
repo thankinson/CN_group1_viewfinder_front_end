@@ -15,6 +15,10 @@ export const Login = ({ user, setUser }) => {
     // This switches between log in or sign up render
     const [bool, setBool] = useState(false);
 
+    useEffect(() => {
+        document.title = "Login / ViewFinder"
+    }, [])
+
     // Try a token login
     useEffect( () => {
         try {

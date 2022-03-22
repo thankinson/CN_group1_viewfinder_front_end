@@ -1,6 +1,10 @@
-import React from 'react'
+import {useEffect} from 'react'
 import { Footer } from '../components/footer'
 export const Home = () => {
+
+    useEffect(() => {
+        document.title = "Home / ViewFinder"
+    }, [])
     
     return (
         <>
