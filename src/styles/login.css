@@ -23,11 +23,11 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 400px;
-    width: 350px;
+    height: 300px;
+    width: 500px;
 
     background-color: #c4c4c4;
-    border-radius: 10px;
+    /* border-radius: 10% 10% 10% 10% / 25% 25% 25% 25%; */
     box-shadow: #070c18 0px 15px 6px 0px;
     
 }
