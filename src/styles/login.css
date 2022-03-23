@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500&family=Limelight&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Lexend', sans-serif;
+    background: linear-gradient(#00041a, #20386b);
+    height: 100%;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+}
+
+.login-container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 400px;
+    width: 350px;
+
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    box-shadow: #070c18 0px 15px 6px 0px;
+    
+}
+
+.login-form input {
+    border: none;
+    border-radius: 6px;
+    height: 18px;
+    width: 200px;
+    padding: 0.5rem;
+    margin: 5px;
+    background-color: rgb(226, 226, 226)
+}
+
+.login-form input:focus {
+    outline: none;
+    background-color: rgb(243, 243, 243)
+}
+
+.submit-button {
+    margin: 5px;
+    width: 100px;
+    background-color: rgb(231, 231, 231);
+    border: none;
+    color: rgb(44, 44, 44);
+    font-family: 'Lexend';
+    letter-spacing: 2px;
+    font-weight: 600;
+    border-radius: 9px;
+    padding: 1em;
+}
+
+.submit-button:active {
+    transform: translateY(4px)
+}
+
+.submit-button:hover {
+    background-color: rgb(216, 216, 216);
+    cursor: pointer;
+}
+
+.login-bool {
+    cursor: pointer;
+    color: rgb(7, 120, 196);
+}
+
+.login-bool:hover {
+    color: rgb(0, 77, 128);
+}
+
+#transition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    color: white;
+}
+
+#scrolldown-arrow {
+    fill: white;
+    scale: 3;
+}
+
+.blurb-section {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 500px;
+}
+
+.blurb-container {
+    width: 50vw;
+    height: 300px;
+    background-color:#c4c4c4;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: #0a1224 0px 15px 6px 0px;
+}
