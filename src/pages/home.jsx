@@ -1,4 +1,5 @@
 import {useEffect} from 'react'
+import { CollapsibleMovie } from '../components/collapsibleMovie'
 import { Footer } from '../components/footer'
 import Navbar from '../components/navbar'
 export const Home = () => {
@@ -18,6 +19,8 @@ export const Home = () => {
             <div className='search-results-container'>
                 {/* map thru search results, make collapsable comp for each */}
             </div>
+
+            <CollapsibleMovie />
             <Footer />
         </>
     )
