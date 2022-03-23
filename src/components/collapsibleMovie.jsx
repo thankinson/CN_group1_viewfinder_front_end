@@ -36,50 +36,43 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
         if (expanded) {
             return (
                 <MovieItemDiv>
-                    <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                    <MovieItemTitle>{movie.title} (expanded!)</MovieItemTitle>
-                    <MovieItemElementDiv
-                        onClick={   () =>   {   
-                                                watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
-                                                console.log(watchlist);
-                                            }
+                    <MovieItemTopDiv>
+                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                        <MovieItemTitle>{movie.title} (expanded!)</MovieItemTitle>
+                        <MovieItemElementDiv
+                            onClick={   () =>   {   
+                                watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
+                                console.log(watchlist);
+                            }
                         }
-                    >
-                    <Logo src={Star}/>
-                    </MovieItemElementDiv>
-                    <MovieItemDetailsDiv>
-                        <ul>
-                            <li>
-                                ghjjgh
-                            </li>
-                            <li>
-
-                            </li>
-                            <li>
-
-                            </li>
-                            <li>
-
-                            </li>
-                        </ul>
-                    </MovieItemDetailsDiv>
+                        >
+                        <Logo src={Star}/>
+                        </MovieItemElementDiv>
+                    </MovieItemTopDiv>
+                        <MovieItemDetailsDiv>
+                            <MovieItemPlotDiv>
+                                {movie.overview}
+                            </MovieItemPlotDiv>
+                        </MovieItemDetailsDiv>
                 </MovieItemDiv>
             )
         }
         else {
             return (
                 <MovieItemDiv>
-                    <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                    <MovieItemTitle>{movie.title}</MovieItemTitle>
-                    <MovieItemElementDiv
-                        onClick={   () =>   {   
-                                                watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
-                                                console.log(watchlist);
-                                            }
+                    <MovieItemTopDiv>
+                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                        <MovieItemTitle>{movie.title}</MovieItemTitle>
+                        <MovieItemElementDiv
+                            onClick={   () =>   {   
+                                watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
+                                console.log(watchlist);
+                            }
                         }
-                    >
-                    <Logo src={Star}/>
-                    </MovieItemElementDiv>
+                        >
+                        <Logo src={Star}/>
+                        </MovieItemElementDiv>
+                    </MovieItemTopDiv>
                 </MovieItemDiv>
             )
         }
@@ -101,7 +94,7 @@ export const CollapsibleMovie = ( { moviesArray } ) => {
 }
 
 const MainMovieDiv = styled.div`
-    width: 30vw;
+    width: 36em;
     display: flex;
     flex-direction: column;
     border: black 4px solid;
@@ -138,11 +131,21 @@ const MovieItemDiv = styled.div`
     display: flex;
     border: black 4px solid;
     margin: 2px;
+    flex-direction: column;
+    align-items: center;
+`
+
+const MovieItemTopDiv = styled.div`
+    display: flex;
+    border: black 4px solid;
+    margin: 2px;
     flex-direction: row;
     align-items: center;
-    // flex:1;
     height: 3em;
+    // background: cyan;
+    width: 24em;
 `
+
 const MovieItemElementDiv = styled.div`
     // display: flex;
     // justify-content: stretch;
@@ -151,11 +154,21 @@ const MovieItemElementDiv = styled.div`
     margin: 2px;
     height: 2em;
     width: 2em;
+    // background-color: red;
 `
 const MovieItemDetailsDiv = styled.div`
     border: black 4px solid;
     margin: 2px;
     flex: 1;
+    width: 24em;
+    // height: 2em;
+    // width: 2em;
+`
+const MovieItemPlotDiv = styled.div`
+    border: black 4px solid;
+    margin: 2px;
+    flex: 1;
+    width: 50%;
     // height: 2em;
     // width: 2em;
 `
