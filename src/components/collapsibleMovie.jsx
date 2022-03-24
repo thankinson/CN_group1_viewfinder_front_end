@@ -127,74 +127,114 @@ export const CollapsibleWatchlist = () => {
         console.log(watchlist);
     }
 
-    const RetrieveMovieByID = async (id) => {
-        try {
-            const response = await fetch (`https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`);
-            const movieJSON = await response.json();
-            console.log(movieJSON);
-            return movieJSON;
-
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
-    const MovieItem = ( movie ) => {
+    const MovieItem = ( { movie } ) => {
+        console.log("MovieItem movie =", movie);
         const [expanded, setExpanded] = useState(false);
         if (expanded) {
             return (
-                <MovieItemDiv>
-                    <MovieItemTopDiv>
-                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
-                        <Logo src={Star}/>
-                        </MovieItemElementDiv>
-                    </MovieItemTopDiv>
-                        <MovieItemDetailsDiv>
+                <p>
+                    MovieItem...
+                </p>
+                // <MovieItemDiv>
+                //     <MovieItemTopDiv>
+                //         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                //         <MovieItemTitle>{movie.title}</MovieItemTitle>
+                //         <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
+                //         <Logo src={Star}/>
+                //         </MovieItemElementDiv>
+                //     </MovieItemTopDiv>
+                //         <MovieItemDetailsDiv>
 
-                            <MovieItemDetailsPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
-                            <MovieItemPlotDiv>
-                                <StarRating stars={movie.vote_average/2}/>
-                                {movie.overview}
-                            </MovieItemPlotDiv>
-                        </MovieItemDetailsDiv>
-                </MovieItemDiv>
+                //             <MovieItemDetailsPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
+                //             <MovieItemPlotDiv>
+                //                 <StarRating stars={movie.vote_average/2}/>
+                //                 {movie.overview}
+                //             </MovieItemPlotDiv>
+                //         </MovieItemDetailsDiv>
+                // </MovieItemDiv>
             )
         }
         else {
             return (
-                <MovieItemDiv>
-                    <MovieItemTopDiv>
-                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
-                        <Logo src={Star}/>
-                        </MovieItemElementDiv>
-                    </MovieItemTopDiv>
-                </MovieItemDiv>
+                <p>
+                    MovieItem...
+                </p>
+                // <MovieItemDiv>
+                //     <MovieItemTopDiv>
+                //         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                //         <MovieItemTitle>{movie.title}</MovieItemTitle>
+                //         <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
+                //         <Logo src={Star}/>
+                //         </MovieItemElementDiv>
+                //     </MovieItemTopDiv>
+                // </MovieItemDiv>
             )
         }
     }
+    // const MovieItemByID = async ( {movieID} ) => {
+    const MovieItemByID = async ( ) => {
+        try {
+            console.log("Begin MovieItemByID");
+            // const response = await fetch (`https://api.themoviedb.org/3/movie/${movieID}?api_key=${REACT_APP_API_KEY}`);
+            // const movieJSON = await response.json();
+            // console.log("Movie id", movieID, "retrieved: ", movieJSON);
+
+            // return movieJSON;
+            return (
+                <MovieItem movie = "A string" />
+            )
+
+        } catch (error) {
+            console.log(error);
+            return (
+                <h2>Placeholder MIBID</h2>
+                // <h2>{error} on movie {movieID}</h2>
+            )
+        }
+
+    }
+
+    const assembleWatchlist = async (IDArray, state, setter) => {
+        for (let movieID of IDArray) {
+            try {
+                const response = await fetch (`https://api.themoviedb.org/3/movie/${movieID}?api_key=${REACT_APP_API_KEY}`);
+                const movieJSON = await response.json();
+                setter([...state, movieJSON]);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
+    assembleWatchlist([2,3], watchlist, setWatchlist);
+
     return (
         // <h2>
         //     Placeholder
         // </h2>
-        <MainMovieDiv>
             <h2>
                 CollapsibleWatchlist
+                {}
             </h2>
-                {/* { watchlist && watchlist.map(
-                        (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
-                    )
-                } */}
-                { ["1", "2", "3", "4"].map(
-                    // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
-                    (item, index) => <p>{RetrieveMovieByID(item).title} </p>
-                    )
-                }
-        </MainMovieDiv>
+
+    //     <MainMovieDiv>
+    //         <h2>
+    //             CollapsibleWatchlist
+    //         </h2>
+    //             {/* { watchlist && watchlist.map(
+    //                     (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
+    //                 )
+    //             } */}
+    //             {/* { [2, 3, 2, 3].map(
+    //                 // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
+    //                 (item, index) => <RetrieveMovieByID id={item} />
+    //                 )
+    //             } */}
+    //         {/* <MovieItemByID movieID = {2} /> */}
+    //         <MovieItemByID />
+                
+    //     </MainMovieDiv>
     )
 
 }
