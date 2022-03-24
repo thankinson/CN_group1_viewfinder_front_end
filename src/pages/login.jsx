@@ -50,9 +50,11 @@ export const Login = ({ user, setUser }) => {
     return (
         <>
         <div className="login-section">
+            
             <div className="login-container">
                 { user && <Navigate to="/home" /> }
-                { bool ? <h3>log in</h3> : <h3>sign up</h3> }
+                { bool ? <h3 className="login-signup-title">log in</h3> : <h3 className="login-signup-title">sign up</h3> }
+                <h1 className='admit-one'>ADMIT ONE</h1>
                 <form className="login-form" onSubmit={submitHandler}>
                     <input
                         onChange={(event) => setUsername(event.target.value)}
@@ -70,14 +72,15 @@ export const Login = ({ user, setUser }) => {
                     <input
                         onChange={(event) => setPass(event.target.value)}
                         placeholder='password'
+                        type='password'
                         required={true}
                     /> <br></br>
                     <button className='submit-button' type='submit'>submit</button>
                 </form>
 
                 { bool ? 
-                    <p>Click <a className="login-bool" onClick={() => setBool(!bool)}>here</a> to sign up!</p>
-                    : <p>Already have an account? Click <a className='login-bool' onClick={() => setBool(!bool)}>here</a> to log in!</p>
+                    <p className="login-signup">Click <a className="login-bool" onClick={() => setBool(!bool)}>here</a> to sign up!</p>
+                    : <p className="login-signup">Already have an account? Click <a className='login-bool' onClick={() => setBool(!bool)}>here</a> to log in!</p>
                 }
             </div>
         </div>
