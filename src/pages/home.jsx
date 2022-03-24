@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
-import { CollapsibleMovies, movieWatchlistArray, TemporaryContainer } from '../components/collapsibleMovie'
+import { useEffect, useState } from 'react'
+import { CollapsibleSearch, CollapsibleWatchlist, TemporaryContainer } from '../components/collapsibleMovie'
 import { Footer } from '../components/footer'
 import Navbar from '../components/navbar'
-export const Home = () => {
+
+export const Home = ( props ) => {
 
     useEffect(() => {
         document.title = "Home / ViewFinder"
@@ -21,11 +22,12 @@ export const Home = () => {
             </div>
 
             <TemporaryContainer>
-                <CollapsibleMovies listType = "Search"/>
-                <CollapsibleMovies moviesArray = {movieWatchlistArray} listType = "Watchlist"/>
+                <CollapsibleSearch user = {props.user} />
+                <CollapsibleWatchlist />
 
             </TemporaryContainer>
             <Footer />
         </>
     )
 }
+//imported L3, uncom L12

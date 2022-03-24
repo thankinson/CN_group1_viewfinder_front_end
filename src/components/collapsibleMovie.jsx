@@ -1,5 +1,5 @@
 // Collapsible Bar
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Collapsible from "react-collapsible";
 import "../globalstyles/styles.css";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
+import { addFilm, listUserFilms } from "../utils";
 
 
 
@@ -31,38 +32,13 @@ const StarRating = ({ stars }) =>  {
 
 export let movieWatchlistArray = [];
 
-export const CollapsibleMovies = ( props ) => {
-    const moviesArray = props.moviesArray;
-    const listType = props.listType;
-
-    console.log("listType is", listType)
-
-    const [watchlist, setWatchlist] = useState (moviesArray);
+export const CollapsibleSearch = ( { user } ) => {
+    
     const [movieSearch, setMovieSearch] = useState();
     const [movieResults, setMovieResults] = useState([]);
-    
-    // const [watchlist, setWatchlist] = useState([moviesArray]);
-    // const [movieSearch, setMovieSearch] = useState();
-    // const [movieResults, setMovieResults] = useState([]);
-    
-    const MovieWatchlistHandler = ( addMovie ) => {   
-        // watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
-        movieWatchlistArray.length ? movieWatchlistArray = [ ...movieWatchlistArray, addMovie.id] : movieWatchlistArray = [addMovie.id];
-        setWatchlist(movieWatchlistArray);
-        console.log(movieWatchlistArray);
-    }
 
-    const RetrieveMovieByID = async (id) => {
-        try {
-            const response = await fetch (`https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`);
-            const movieJSON = await response.json();
-            console.log(movieJSON);
-            return movieJSON;
-
-        } catch (error) {
-            console.log(error);
-        }
-
+    const MovieWatchlistAdd = ( movie ) => {
+        addFilm(user, movie);
     }
 
     const SearchMovie = async (searchString) => {
@@ -85,8 +61,8 @@ export const CollapsibleMovies = ( props ) => {
                 <MovieItemDiv>
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title} (expanded!)</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistHandler(movie)}>
+                        <MovieItemTitle>{movie.title}</MovieItemTitle>
+                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
                         <Logo src={Star}/>
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
@@ -107,7 +83,7 @@ export const CollapsibleMovies = ( props ) => {
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistHandler(movie)}>
+                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
                         <Logo src={Star}/>
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
@@ -115,117 +91,120 @@ export const CollapsibleMovies = ( props ) => {
             )
         }
     }
+        
+    return (
+        <MainMovieDiv>
+            <h2>
+                CollapsibleSearch
+            </h2>
+                <MovieSearchDiv>
+                {/* MovieSearchDiv */}
+                {/* <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} /> */}
+                <MovieSearchInput onChange={(e) => setMovieSearch(e.target.value)} />
+                    <button onClick={() => SearchMovie(movieSearch)}>Search</button>
 
-    if ( props.listType === "Search" ) {
-        return (
-            <MainMovieDiv>
-                    {/* setWatchlist([ ...watchlist, movie.title]) */}
-                    { watchlist && watchlist.map(
-                            (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
-                        )
-                    }
-            </MainMovieDiv>
-        )
+                </MovieSearchDiv>
+                {movieResults && movieResults.map(
+                        (item, index) => <MovieItem movie = {item} />
+                    )
+                }
+        </MainMovieDiv>
+    )
 
-    } 
-    else if ( props.listType  === "Watchlist") {
-        return (
-            <MainMovieDiv>
-                    <MovieSearchDiv>
-                    {/* MovieSearchDiv */}
-                    {/* <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} /> */}
-                    <MovieSearchInput onChange={(e) => setMovieSearch(e.target.value)} />
-                        <button onClick={() => SearchMovie(movieSearch)}>Search</button>
 
-                    </MovieSearchDiv>
-                    {movieResults && movieResults.map(
-                            (item, index) => <MovieItem movie = {item} />
-                        )
-                    }
-            </MainMovieDiv>
-        )
-    }
-    else {
-        return (
-            <h2>Unset!!</h2>
-        )
-    }
-
-    // return (
-    //     <MainMovieDiv>
-    //             {/* setWatchlist([ ...watchlist, movie.title]) */}
-    //             <MovieSearchDiv>
-    //             {/* MovieSearchDiv */}
-    //             {/* <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} /> */}
-    //                 <MovieSearchInput onChange={(e) => setMovieSearch(e.target.value)} />
-    //                 <button onClick={() => SearchMovie(movieSearch)}>Search</button>
-
-    //             </MovieSearchDiv>
-    //             { movieResults && movieResults.map(
-    //                     (item, index) => <MovieItem movie = {item} />
-    //                 )
-    //             }
-    //     </MainMovieDiv>
-    // )
 }
 
-    // export const CollapsibleMoviesWatchlist = ( { moviesArray } ) => {
-    //     const MovieItem = ( {movie} ) => {
-    //         const [expanded, setExpanded] = useState(false);
-    //         if (expanded) {
-    //             return (
-    //                 <MovieItemDiv>
+export const CollapsibleWatchlist = () => {
+    const [watchlist, setWatchlist] = useState ([]);
+    // listUserFilms(setWatchlist);
 
-    //                     <MovieItemTopDiv>
-    //                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-    //                         <MovieItemTitle>{movie.title} (expanded!)</MovieItemTitle>
-    //                         <MovieItemElementDiv onClick={
-    //                             () => { MovieWatchlistHandler(movie);
-    //                             }}
-    //                         >
-    //                             <Logo src={Star}/>
-    //                         </MovieItemElementDiv>
-    //                     </MovieItemTopDiv>
+    useEffect(() => {
+    }, []);
 
-    //                     <MovieItemDetailsDiv>
+    const MovieWatchlistAdd = ( movie ) => {
+        addFilm(movie);
+        setWatchlist(listUserFilms);
+        console.log(watchlist);
+    }
 
-    //                         <MovieItemDetailsPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
-    //                         <MovieItemPlotDiv>
-    //                             <StarRating stars={movie.vote_average/2}/>
-    //                             {movie.overview}
-    //                         </MovieItemPlotDiv>
-    //                     </MovieItemDetailsDiv>
+    const RetrieveMovieByID = async (id) => {
+        try {
+            const response = await fetch (`https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`);
+            const movieJSON = await response.json();
+            console.log(movieJSON);
+            return movieJSON;
 
+        } catch (error) {
+            console.log(error);
+        }
 
-    //                 </MovieItemDiv>
-    //             )
-    //         }
-    //         else {
-    //             return (
-    //                 <MovieItemDiv>
-    //                     <MovieItemTopDiv>
-    //                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-    //                         <MovieItemTitle>{movie.title}</MovieItemTitle>
-    //                         <MovieItemElementDiv onClick={
-    //                             () => { MovieWatchlistHandler(movie)
+    }
 
-    //                             }}
-    //                         >
-    //                             <Logo src={Star}/>
-    //                         </MovieItemElementDiv>
-    //                     </MovieItemTopDiv>
-    //                 </MovieItemDiv>
-    //             )
-    //         }
-    //     }
+    const MovieItem = ( movie ) => {
+        const [expanded, setExpanded] = useState(false);
+        if (expanded) {
+            return (
+                <MovieItemDiv>
+                    <MovieItemTopDiv>
+                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                        <MovieItemTitle>{movie.title}</MovieItemTitle>
+                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
+                        <Logo src={Star}/>
+                        </MovieItemElementDiv>
+                    </MovieItemTopDiv>
+                        <MovieItemDetailsDiv>
 
-    // }
+                            <MovieItemDetailsPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
+                            <MovieItemPlotDiv>
+                                <StarRating stars={movie.vote_average/2}/>
+                                {movie.overview}
+                            </MovieItemPlotDiv>
+                        </MovieItemDetailsDiv>
+                </MovieItemDiv>
+            )
+        }
+        else {
+            return (
+                <MovieItemDiv>
+                    <MovieItemTopDiv>
+                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                        <MovieItemTitle>{movie.title}</MovieItemTitle>
+                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
+                        <Logo src={Star}/>
+                        </MovieItemElementDiv>
+                    </MovieItemTopDiv>
+                </MovieItemDiv>
+            )
+        }
+    }
+    return (
+        // <h2>
+        //     Placeholder
+        // </h2>
+        <MainMovieDiv>
+            <h2>
+                CollapsibleWatchlist
+            </h2>
+                {/* { watchlist && watchlist.map(
+                        (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
+                    )
+                } */}
+                { ["1", "2", "3", "4"].map(
+                    // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
+                    (item, index) => <p>{RetrieveMovieByID(item).title} </p>
+                    )
+                }
+        </MainMovieDiv>
+    )
+
+}
 
 export const TemporaryContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     border: black 4px dashed;
+    background-color: lightblue;
     padding: 2px;
 `
 const MainMovieDiv = styled.div`
