@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Footer } from '../components/footer'
+import Navbar from '../components/navbar'
 import styled from 'styled-components';
 
 export const UserSettings = ({user, setUser}) => {
@@ -10,7 +11,7 @@ export const UserSettings = ({user, setUser}) => {
 
     return (
         <>
-            {/* NAVBAR HERE */}
+            <Navbar />
             <UserDetails>
                 <p>username goes here</p>
                 <p>email goes here</p>

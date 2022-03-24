@@ -1,0 +1,31 @@
+.nav-container {
+    display: flex;
+    border: orange dashed 3px;
+    height: 10vh;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    border: red solid 2px;
+}
+
+.nav-list {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    border: green solid 2px;
+    background-color: red;
+    width: 25%;
+}
+
+.active {
+    color: rgb(213, 228, 77);
+}
