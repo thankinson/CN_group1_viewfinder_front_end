@@ -1,5 +1,5 @@
-import {useEffect} from 'react'
-import { CollapsibleMovie } from '../components/collapsibleMovie'
+import { useEffect } from 'react'
+import { CollapsibleMovies, movieWatchlistArray, TemporaryContainer } from '../components/collapsibleMovie'
 import { Footer } from '../components/footer'
 import Navbar from '../components/navbar'
 export const Home = () => {
@@ -13,14 +13,18 @@ export const Home = () => {
             <Navbar />
             <form>
                 <input type='search' placeholder='search for a film...'/>
-                <button className='search-button' type='submit'>search</button>
+                <button className='search-button' type='submit'>Search</button>
             </form>
             
             <div className='search-results-container'>
                 {/* map thru search results, make collapsable comp for each */}
             </div>
 
-            <CollapsibleMovie />
+            <TemporaryContainer>
+                <CollapsibleMovies listType = "Search"/>
+                <CollapsibleMovies moviesArray = {movieWatchlistArray} listType = "Watchlist"/>
+
+            </TemporaryContainer>
             <Footer />
         </>
     )
