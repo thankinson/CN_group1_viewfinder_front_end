@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
-import { CollapsibleMovies, movieWatchlistArray, TemporaryContainer } from '../components/collapsibleMovie'
+import { useEffect, useState } from 'react'
+import { CollapsibleMovies, movieWatchlistArray, TemporaryContainer, MovieContext } from '../components/collapsibleMovie'
 import { Footer } from '../components/footer'
 import Navbar from '../components/navbar'
 export const Home = () => {
+
+    const [homeWatchlistState, setHomeWatchlistState] = useState(movieWatchlistArray);
 
     useEffect(() => {
         document.title = "Home / ViewFinder"
@@ -22,7 +24,7 @@ export const Home = () => {
 
             <TemporaryContainer>
                 <CollapsibleMovies listType = "Search"/>
-                <CollapsibleMovies moviesArray = {movieWatchlistArray} listType = "Watchlist"/>
+                <CollapsibleMovies moviesArrayState = {homeWatchlistState} moviesArrayStateSetter = {setHomeWatchlistState} listType = "Watchlist"/>
 
             </TemporaryContainer>
             <Footer />

@@ -1,5 +1,5 @@
 // Collapsible Bar
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Collapsible from "react-collapsible";
 import "../globalstyles/styles.css";
 import styled from "styled-components";
@@ -32,15 +32,16 @@ const StarRating = ({ stars }) =>  {
 export let movieWatchlistArray = [];
 
 export const CollapsibleMovies = ( props ) => {
-    const moviesArray = props.moviesArray;
+    const [moviesArray, setmoviesArray] = useState(props.moviesArrayState);
     const listType = props.listType;
-
-    console.log("listType is", listType)
-
     const [watchlist, setWatchlist] = useState (moviesArray);
     const [movieSearch, setMovieSearch] = useState();
     const [movieResults, setMovieResults] = useState([]);
-    
+
+    useEffect(() => {
+        console.log(watchlist, " - Has changed");
+    }, [props.movieArrayState]);
+
     // const [watchlist, setWatchlist] = useState([moviesArray]);
     // const [movieSearch, setMovieSearch] = useState();
     // const [movieResults, setMovieResults] = useState([]);
@@ -48,8 +49,9 @@ export const CollapsibleMovies = ( props ) => {
     const MovieWatchlistHandler = ( addMovie ) => {   
         // watchlist.length ? setWatchlist([ ...watchlist, movie.title]) : setWatchlist([movie.title]);
         movieWatchlistArray.length ? movieWatchlistArray = [ ...movieWatchlistArray, addMovie.id] : movieWatchlistArray = [addMovie.id];
+        props.moviesArrayStateSetter(movieWatchlistArray);
         setWatchlist(movieWatchlistArray);
-        console.log(movieWatchlistArray);
+        console.log(watchlist);
     }
 
     const RetrieveMovieByID = async (id) => {
@@ -115,10 +117,13 @@ export const CollapsibleMovies = ( props ) => {
             )
         }
     }
-
-    if ( props.listType === "Search" ) {
+    
+    if ( props.listType === "Watchlist" ) {
         return (
             <MainMovieDiv>
+                <h2>
+                    {`${props.listType} listType.`}
+                </h2>
                     {/* setWatchlist([ ...watchlist, movie.title]) */}
                     { watchlist && watchlist.map(
                             (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
@@ -128,9 +133,12 @@ export const CollapsibleMovies = ( props ) => {
         )
 
     } 
-    else if ( props.listType  === "Watchlist") {
+    else if ( props.listType  === "Search") {
         return (
             <MainMovieDiv>
+                <h2>
+                    {`${props.listType} listType.`}
+                </h2>
                     <MovieSearchDiv>
                     {/* MovieSearchDiv */}
                     {/* <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} /> */}
@@ -147,10 +155,11 @@ export const CollapsibleMovies = ( props ) => {
     }
     else {
         return (
-            <h2>Unset!!</h2>
+            <h2>{`${props.listType} listType. Unset?!`}</h2>
         )
     }
 
+}
     // return (
     //     <MainMovieDiv>
     //             {/* setWatchlist([ ...watchlist, movie.title]) */}
@@ -167,7 +176,7 @@ export const CollapsibleMovies = ( props ) => {
     //             }
     //     </MainMovieDiv>
     // )
-}
+
 
     // export const CollapsibleMoviesWatchlist = ( { moviesArray } ) => {
     //     const MovieItem = ( {movie} ) => {
@@ -226,6 +235,7 @@ export const TemporaryContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     border: black 4px dashed;
+    background-color: lightblue;
     padding: 2px;
 `
 const MainMovieDiv = styled.div`
