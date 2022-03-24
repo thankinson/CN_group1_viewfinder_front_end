@@ -112,8 +112,8 @@ export const addFilm = async (user, film) => {
         username: user,
         newFilm: film
       })
-
     })
+    const data = await response.json();
   } catch (error) {
     console.log(error);
   }
@@ -121,6 +121,7 @@ export const addFilm = async (user, film) => {
 
 export const listUserFilms = async (setter) => {
   try {
+    console.log(listUserFilms, `Header = Authorization: Bearer ${localStorage.getItem("myToken")}`,  `await fetch(${process.env.REACT_APP_REST_API}watchlist`);
     const response = await fetch(`${process.env.REACT_APP_REST_API}watchlist`, {
       method: "GET",
       headers: {
