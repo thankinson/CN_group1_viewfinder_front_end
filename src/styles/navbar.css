@@ -20,10 +20,20 @@
 
 .nav-item {
     display: flex;
+    height: 80%;
+    flex-direction: column;
     justify-content: center;
     border: green solid 2px;
-    background-color: red;
+    background-color: rgb(248, 243, 169);
     width: 25%;
+}
+
+.nav-item:hover {
+    height: 100%;
+}
+
+.nav-item a {
+    align-self: center;
 }
 
 .active {
