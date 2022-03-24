@@ -92,7 +92,7 @@ export const updatePass = async (user, passUpdate) => {
         pass: passUpdate,
       }),
     });
-    const data = await response.JSON();
+    const data = await response.json();
     if (!data.msg) {
       throw new Error(data.err);
     }
@@ -100,3 +100,36 @@ export const updatePass = async (user, passUpdate) => {
     console.log();
   }
 };
+
+export const addFilm = async (user, film) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_REST_API}watchlist`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: user,
+        newFilm: film
+      })
+
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const listUserFilms = async (setter) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_REST_API}watchlist`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("myToken")}`,
+      }
+    })
+    const data = await response.json();
+    setter(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
