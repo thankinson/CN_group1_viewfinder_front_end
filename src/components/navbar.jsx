@@ -13,10 +13,8 @@ function Navbar() {
       <>
         <nav className="navbar">
           <div className="nav-container">
-          {/* <NavigationBar> */}
             <NavLink exact to="/" className="nav-logo">
               Put FLIXYGUY here
-              
             </NavLink>
   
             {/* <ul className={click ? "nav-menu active" : "nav-menu"}> */}
@@ -28,7 +26,7 @@ function Navbar() {
                   activeClassName="active"
                   className="nav-links"
                 >
-                  Home
+                  HOME
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -38,7 +36,7 @@ function Navbar() {
                   activeClassName="active"
                   className="nav-links"
                 >
-                  watchlist
+                  WATCHLIST
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -48,7 +46,7 @@ function Navbar() {
                   activeClassName="active"
                   className="nav-links"
                 >
-                  Settings
+                  SETTINGS
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -59,22 +57,15 @@ function Navbar() {
                   className="nav-links"
                   // onClick={logout}
                 >
-                  Log Out
+                  LOG OUT
                 </NavLink>
               </li>
             </ul>
           </div>
-          {/* </NavigationBar> */}
         </nav>
       </>
     );
   }
 
-  export const NavigationBar = styled.div`
-    backgroundColor: white;
-    border: pink solid 5px;
-    display: flex;
-    
-  `
   
-  export default Navbar;
+export default Navbar;
