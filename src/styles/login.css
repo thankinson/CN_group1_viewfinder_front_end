@@ -15,31 +15,77 @@ body {
     height: 80vh;
 }
 
+.circle {
+    border: red solid 3px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
 .login-container {
+    
     margin-top: 100px;
-    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 400px;
-    width: 350px;
+    height: 300px;
+    width: 500px;
 
-    background-color: #c4c4c4;
-    border-radius: 10px;
+    /* border-radius: 10% 10% 10% 10% / 25% 25% 25% 25%; */
     box-shadow: #070c18 0px 15px 6px 0px;
+    border-left: #070c18 dashed 2px;
+    border-right: #070c18 dashed 2px;
+    background: -webkit-radial-gradient(.6em .6em, circle, #070f20 .55em, rgba(255,255,255,0) .6em) -.6em -.6em,
+                -webkit-radial-gradient(1.5em 50%, circle, #070f20 0.5em, rgba(255,255,255,0) .4em);
+                
+    
+    /* background: radial-gradient(circle 40px at 0% 100%, #070c18, #070c18, #070c18 75%, rgb(245, 226, 165) 1%); */
+                /* radial-gradient(circle 40px at 100% 0%, #00041a, #00041a, #00041a 75%, rgb(245, 226, 165) 1%); */
+    background-color: rgb(236, 222, 173);
+    
+    /* background: radial-gradient(circle, rgba(255,238,112,1) 0%, rgba(198,152,0,1) 100%); */
     
 }
 
+.login-container:hover {
+    transform: translateY(-6px);
+    box-shadow: #070c18 0px 30px 15px 0px;
+}
+
+.login-signup-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.admit-one {
+    align-self:flex-start;
+    position:absolute;
+    opacity: 15%;
+    font-size: 35px;
+    transform: rotateZ(90deg);
+    text-decoration:underline;
+    
+}
+
+.login-form {
+    border: rgb(231, 69, 69) solid 5px;
+    border-radius: 15px;
+    width: 83%;
+    height:70%;
+    padding-top: 20px;
+}
+
+
 .login-form input {
-    border: none;
+    border:grey dotted 2px;
     border-radius: 6px;
     height: 18px;
     width: 200px;
     padding: 0.5rem;
     margin: 5px;
-    background-color: rgb(226, 226, 226)
+    background-color: rgb(241, 231, 192)
 }
 
 .login-form input:focus {
@@ -49,15 +95,17 @@ body {
 
 .submit-button {
     margin: 5px;
-    width: 100px;
-    background-color: rgb(231, 231, 231);
-    border: none;
+    margin-top: 0;
+    width: 150px;
+    background-color: rgb(241, 231, 192);
+    border: grey dotted 2px;
     color: rgb(44, 44, 44);
     font-family: 'Lexend';
     letter-spacing: 2px;
     font-weight: 600;
     border-radius: 9px;
     padding: 1em;
+    font-style:normal;
 }
 
 .submit-button:active {
@@ -65,8 +113,13 @@ body {
 }
 
 .submit-button:hover {
-    background-color: rgb(216, 216, 216);
+    background-color: rgb(224, 214, 172);
     cursor: pointer;
+}
+
+.login-signup {
+    margin-bottom: 5px;
+    margin-top: 0;
 }
 
 .login-bool {
@@ -101,7 +154,7 @@ body {
 
 .blurb-container {
     width: 50vw;
-    height: 300px;
+    height: fit-content;
     background-color:#c4c4c4;
     border-radius: 10px;
     padding: 1rem;

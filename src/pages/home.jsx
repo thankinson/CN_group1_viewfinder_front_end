@@ -31,4 +31,3 @@ export const Home = () => {
         </>
     )
 }
-//imported L3, uncom L12
