@@ -1,32 +1,37 @@
-import { useEffect } from 'react'
-import { Footer } from '../components/footer'
-import Navbar from '../components/navbar'
-import styled from 'styled-components';
+import { useEffect } from "react";
+import styled from "styled-components";
+import { Footer } from "../components/footer";
+import { updatePass, updateEmail } from "../utils";
 
-export const UserSettings = ({user, setUser}) => {
-
+export const UserSettings = ({ user, setUser }) => {
+    //Changes document title on load
     useEffect(() => {
-        document.title = "Account / ViewFinder"
-    }, [])
+        document.title = "Account / ViewFinder";
+    }, []);
+
+    //useEffect for getting user data here?
+    useEffect(() => {}, []);
+
+    //Function to change email
+    const emailChanger = (user, emailUpdate) => {};
+    //Function to change password
+    const passwordChanger = (user, passUpdate) => {};
 
     return (
         <>
             <Navbar />
-            <UserDetails>
-                <p>username goes here</p>
-                <p>email goes here</p>
-            </UserDetails>
+            <div id="settings-greeting">
+                <h2>Welcome, {user}</h2>
+                <p>Your email address is {userEmail}.</p>
+                <p>Would you like to change your password or email address?</p>
+            </div>
+            <form id="settings-change-email" onSubmit={(e) => {}}>
+                <input type="email" placeholder={userEmail} />
+            </form>
+            <form id="settings-change-password" onSubmit={(e) => {}}>
+                <input type="password" placeholder="password" />
+            </form>
             <Footer />
         </>
-    )
-}
-
-const UserDetails = styled.div`
-    border: red solid 4px;
-    height: 400px;
-    width: 15vw;
-`
-
-
-
-  
+    );
+};
