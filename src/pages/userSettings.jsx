@@ -28,7 +28,7 @@ export const UserSettings = ({ user, setUser }) => {
         <>
             <Navbar />
             <div id="settings-greeting">
-                <h2>Welcome, {user}</h2>
+                <h2>Welcome {user}!</h2>
                 <p>Would you like to change your password?</p>
             </div>
             <form id="settings-change-password" onSubmit={submitHandler}>
