@@ -56,6 +56,7 @@ export const CollapsibleSearch = ( { user } ) => {
 
     const MovieItem = ( {movie} ) => {
         const [expanded, setExpanded] = useState(false);
+        console.log("MovieItem:",movie.id, movie.title);
         if (expanded) {
             return (
                 <MovieItemDiv>
@@ -114,90 +115,7 @@ export const CollapsibleSearch = ( { user } ) => {
 
 }
 
-export const CollapsibleWatchlist = () => {
-    const [watchlist, setWatchlist] = useState ([]);
-    // listUserFilms(setWatchlist);
 
-    useEffect(() => {
-    }, []);
-
-    const MovieWatchlistAdd = ( movie ) => {
-        addFilm(movie);
-        setWatchlist(listUserFilms);
-        console.log(watchlist);
-    }
-
-    const RetrieveMovieByID = async (id) => {
-        try {
-            const response = await fetch (`https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`);
-            const movieJSON = await response.json();
-            console.log(movieJSON);
-            return movieJSON;
-
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
-    const MovieItem = ( movie ) => {
-        const [expanded, setExpanded] = useState(false);
-        if (expanded) {
-            return (
-                <MovieItemDiv>
-                    <MovieItemTopDiv>
-                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
-                        <Logo src={Star}/>
-                        </MovieItemElementDiv>
-                    </MovieItemTopDiv>
-                        <MovieItemDetailsDiv>
-
-                            <MovieItemDetailsPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
-                            <MovieItemPlotDiv>
-                                <StarRating stars={movie.vote_average/2}/>
-                                {movie.overview}
-                            </MovieItemPlotDiv>
-                        </MovieItemDetailsDiv>
-                </MovieItemDiv>
-            )
-        }
-        else {
-            return (
-                <MovieItemDiv>
-                    <MovieItemTopDiv>
-                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
-                        <Logo src={Star}/>
-                        </MovieItemElementDiv>
-                    </MovieItemTopDiv>
-                </MovieItemDiv>
-            )
-        }
-    }
-    return (
-        // <h2>
-        //     Placeholder
-        // </h2>
-        <MainMovieDiv>
-            <h2>
-                CollapsibleWatchlist
-            </h2>
-                {/* { watchlist && watchlist.map(
-                        (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
-                    )
-                } */}
-                { ["1", "2", "3", "4"].map(
-                    // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
-                    (item, index) => <p>{RetrieveMovieByID(item).title} </p>
-                    )
-                }
-        </MainMovieDiv>
-    )
-
-}
 
 export const TemporaryContainer = styled.div`
     display: flex;

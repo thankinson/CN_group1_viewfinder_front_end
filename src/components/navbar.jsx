@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import '../styles/navbar.css'
 import { logout } from '../utils/index'
 
-function Navbar() {
+export const Navbar = () => {
     const [click, setClick] = useState(false);
- 
+
     return (
       <>
         <nav className="navbar">

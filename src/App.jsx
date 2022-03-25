@@ -8,6 +8,7 @@ import "./globalstyles/styles.css";
 
 function App() {
     const [user, setUser] = useState();
+    const [watchList, setWatchList] = useState();
 
     return (
         <BrowserRouter>
@@ -18,7 +19,7 @@ function App() {
                 />
                 <Route
                     path="/home"
-                    element={<Home user={user} setUser={setUser} />}
+                    element={<Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/>}
                 />
                 <Route
                     path="/user"
@@ -26,7 +27,7 @@ function App() {
                 />
                 <Route
                     path="/watchlist"
-                    element={<WatchList user={user} setUser={setUser} />}
+                    element={<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/>}
                 />
             </Routes>
         </BrowserRouter>

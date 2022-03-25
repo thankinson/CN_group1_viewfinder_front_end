@@ -4,19 +4,19 @@ import { Footer } from "../components/footer";
 import { updatePass, updateEmail } from "../utils";
 import Navbar from "../components/navbar";
 
-export const UserSettings = ({ user, setUser }) => {
-    //Changes document title on load
-    useEffect(() => {
-        document.title = "Account / ViewFinder";
-    }, []);
+// export const UserSettings = ({ user, setUser }) => {
+//     //Changes document title on load
+//     useEffect(() => {
+//         document.title = "Account / ViewFinder";
+//     }, []);
 
-    //useEffect for getting user data here?
-    useEffect(() => {}, []);
+//     //useEffect for getting user data here?
+//     useEffect(() => {}, []);
 
     //Function to change email? Stretch goal
     // const emailChanger = (user, emailUpdate) => {};
     //Function to change password
-    const passwordChanger = (user, passUpdate) => {};
+const passwordChanger = (user, passUpdate) => {
 
     return (
         <>
@@ -31,10 +31,11 @@ export const UserSettings = ({ user, setUser }) => {
             <Footer />
         </>
     );
+
 };
 
-{
-    /* <form id="settings-change-email" onSubmit={(e) => {}}>
-<input type="email" placeholder={userEmail} />
-</form> */
-}
+// {
+//     /* <form id="settings-change-email" onSubmit={(e) => {}}>
+// <input type="email" placeholder={userEmail} />
+// </form> */
+// }
