@@ -29,7 +29,7 @@ function App() {
                 <Route
                     path="/watchlist"
                     // element={<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}
-                    render={() => {<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}}
+                    render={() => {<WatchList user={user}/>}}
                 />
             </Routes>
         </BrowserRouter>
