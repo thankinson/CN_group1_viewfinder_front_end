@@ -23,7 +23,6 @@ const StarRating = ({ stars }) =>  {
     
 }
 export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {    
-    const [watchList, setWatchList] = useState(watchList);
     
     const backendWatchList = [74849 , 11, 74849 , 11 ];
     const createMovieObjectArray = async () => {

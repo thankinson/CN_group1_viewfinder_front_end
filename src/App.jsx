@@ -18,16 +18,18 @@ function App() {
                     element={<Login user={user} setUser={setUser} />}
                 />
                 <Route
-                    path="/home"
-                    element={<Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}
-                />
-                <Route
                     path="/user"
                     // element={<UserSettings user={user} setUser={setUser} />}
                 />
                 <Route
+                    path="/home"
+                    // element={<Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}
+                    render={() => {<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}}
+                />
+                <Route
                     path="/watchlist"
-                    element={<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}
+                    // element={<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}
+                    render={() => {<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}}
                 />
             </Routes>
         </BrowserRouter>
