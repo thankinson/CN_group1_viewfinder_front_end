@@ -127,7 +127,7 @@ export const addFilm = async (user, film) => {
 
 export const listUserFilms = async (setter) => {
     try {
-        console.log(
+        console.log("listUserFilms",
             listUserFilms,
             `Header = Authorization: Bearer ${localStorage.getItem("myToken")}`,
             `await fetch(${process.env.REACT_APP_REST_API}watchlist`

@@ -1,4 +1,7 @@
 //  watch list
+import { useEffect } from "react";
+import { createUser, login, tokenLogin } from "../utils/index";
+
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
 import {
@@ -10,12 +13,14 @@ import {
 //     document.title = "This is a title"
 //   }, [])
 
-export const WatchList = ({ user }) => {
+
+export const WatchList = ({ user, setUser, watchList, setWatchList }) => {
+
     return (
         <>
             <Navbar />
             <TemporaryContainer>
-                <CollapsibleWatchlist user={user} />
+                <CollapsibleWatchlist user={user} setUser={setUser} watchList={watchList} setWatchList={watchList} />
             </TemporaryContainer>
             <Footer />
         </>

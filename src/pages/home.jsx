@@ -6,10 +6,15 @@ import {
 } from "../components/collapsibleMovie";
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
+import { createUser, login, tokenLogin } from "../utils/index";
 
-export const Home = (props) => {
+
+export const Home = ({ user, setUser, watchList, setWatchList }) => {
     useEffect(() => {
         document.title = "Home / ViewFinder";
+        if (localStorage.key("myToken")) {
+            tokenLogin(setUser);
+        }
     }, []);
 
     return (
@@ -27,7 +32,7 @@ export const Home = (props) => {
             </div>
 
             <TemporaryContainer>
-                <CollapsibleSearch user={props.user} />
+                <CollapsibleSearch user={user} setUser={setUser} watchList={watchList} setWatchList={watchList} />
             </TemporaryContainer>
             <Footer />
         </>
