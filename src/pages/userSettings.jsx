@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/footer";
 import { updatePass, updateEmail } from "../utils";
-import Navbar from '../components/navbar'
+import Navbar from "../components/navbar";
 
 export const UserSettings = ({ user, setUser }) => {
     //Changes document title on load
@@ -13,8 +13,8 @@ export const UserSettings = ({ user, setUser }) => {
     //useEffect for getting user data here?
     useEffect(() => {}, []);
 
-    //Function to change email
-    const emailChanger = (user, emailUpdate) => {};
+    //Function to change email? Stretch goal
+    // const emailChanger = (user, emailUpdate) => {};
     //Function to change password
     const passwordChanger = (user, passUpdate) => {};
 
@@ -23,12 +23,8 @@ export const UserSettings = ({ user, setUser }) => {
             <Navbar />
             <div id="settings-greeting">
                 <h2>Welcome, {user}</h2>
-                <p>Your email address is {userEmail}.</p>
                 <p>Would you like to change your password or email address?</p>
             </div>
-            <form id="settings-change-email" onSubmit={(e) => {}}>
-                <input type="email" placeholder={userEmail} />
-            </form>
             <form id="settings-change-password" onSubmit={(e) => {}}>
                 <input type="password" placeholder="password" />
             </form>
@@ -36,3 +32,9 @@ export const UserSettings = ({ user, setUser }) => {
         </>
     );
 };
+
+{
+    /* <form id="settings-change-email" onSubmit={(e) => {}}>
+<input type="email" placeholder={userEmail} />
+</form> */
+}
