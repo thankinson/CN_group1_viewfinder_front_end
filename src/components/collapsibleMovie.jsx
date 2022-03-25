@@ -56,6 +56,7 @@ export const CollapsibleSearch = ( { user } ) => {
 
     const MovieItem = ( {movie} ) => {
         const [expanded, setExpanded] = useState(false);
+        console.log("MovieItem:",movie.id, movie.title);
         if (expanded) {
             return (
                 <MovieItemDiv>
