@@ -22,28 +22,70 @@ const StarRating = ({ stars }) =>  {
     ) 
     
 }
-export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {    
-    
-    const backendWatchList = [74849 , 11, 74849 , 11 ];
-    const createMovieObjectArray = async () => {
-        let movieObjectArray = [];
 
+export const CollapsibleWatchlist = ({ user }) => {
+    const [watchlist, setWatchlist] = useState([]);
+    const [movieJSONState, setMovieJSONState] = useState({});
+
+    // listUserFilms(setWatchlist);
+
+    const retrieveMovieByID = async (id) => {
+        try {
+            const response = await fetch(
+                `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
+            );
+            const movieJSON = await response.json();
+            // console.log(movieJSON);
+            setMovieJSONState(movieJSON);
+            // console.log("movieJSONState", movieJSONState);
+            return movieJSONState;
+            // setWatchlist([...watchlist, movieJSON]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // console.log("retrieveMovieByID", retrieveMovieByID(2));
+
+    const backendWatchList = [74849 , 11, 74849 , 11 ];
+    // const fakeWatchlist = [
+    //     // { id: 454626, title: "A film", img: "" },
+    //     // { id: 2 },
+    //     // { id: 3 },
+    // ];
+    // const createMovieObjectArray = () => {
+        
+    //     // console.log("backendWatchList", backendWatchList);
+        
+    //     let tempBackendWatchList = [];
+    //     for (let x of backendWatchList) {
+    //         // console.log(retrieveMovieByID(x));
+    //         setMovieJSONState(retrieveMovieByID(x));
+    //         // tempBackendWatchList.push(retrieveMovieByID(x));
+    //         tempBackendWatchList.push(movieJSONState);
+    //         setWatchlist((watchlist) => [...watchlist, retrieveMovieByID(x)]);
+    //     }
+    //     // console.log("tempBackendWatchList", tempBackendWatchList)
+    //     // // setWatchlist(tempBackendWatchList);
+    //     console.log("createMovieObjectArray set watchlist to:", watchlist);
+        
+    // };
+
+    const createMovieObjectArray = async () => {
+        let tempBackendWatchList = [];
         for (let id of backendWatchList) {
             try {
-                console.log("fetching film id:", id);
                 const response = await fetch(
                     `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
                 );
                 const movieJSON = await response.json();
-                // setWatchList((watchList) => [...watchList, movieJSON]);
-                movieObjectArray = [...movieObjectArray, movieJSON];
-                console.log("Adding movie ", movieJSON.title);
+                setWatchlist((watchlist) => [...watchlist, movieJSON]);
+
             } catch (error) {
                 console.log(error);
             }
         }
-        ;
-        console.log("createMovieObjectArray set watchlist to:", watchList);
+        console.log("createMovieObjectArray set watchlist to:", watchlist);
         
     };
 
@@ -129,7 +171,7 @@ export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {
                         (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
                     )
                 } */}
-            {watchList.map(
+            {watchlist.map(
                 // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
                 (item, index) => (
                     <div>
@@ -140,6 +182,125 @@ export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {
         </MainMovieDiv>
     );
 };
+
+// export const CollapsibleWatchlist_THISNEW = ({ user, watchList, setWatchList }) => {    
+    
+//     const backendWatchList = [74849 , 11, 74849 , 11 ];
+//     const createMovieObjectArray = async () => {
+//         let movieObjectArray = [];
+
+//         for (let id of backendWatchList) {
+//             try {
+//                 console.log("fetching film id:", id);
+//                 const response = await fetch(
+//                     `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
+//                 );
+//                 const movieJSON = await response.json();
+//                 // setWatchList((watchList) => [...watchList, movieJSON]);
+//                 movieObjectArray = [...movieObjectArray, movieJSON];
+//                 console.log("Adding movie ", movieJSON.title);
+//             } catch (error) {
+//                 console.log(error);
+//             }
+//         }
+//         ;
+//         console.log("createMovieObjectArray set watchlist to:", watchList);
+        
+//     };
+
+//     const setMOR = () => {
+//         createMovieObjectArray();
+//     }
+
+//     useEffect(
+//         () => {
+//         setMOR();
+//     }, []);
+
+//     // const mapFakeWatchlist = (fakeWatchlist) => {
+//     //     return fakeWatchlist.map((item, index) => <p>{item.id}</p>);
+//     // };
+
+// //     return mapFakeWatchlist(fakeWatchlist);
+// // };
+//     // const MovieWatchlistAdd = (movie) => {
+//     //     addFilm(movie);
+//     //     setWatchlist(listUserFilms);
+//     //     console.log(watchlist);
+//     // };
+
+//     const MovieItem = ({ movie }) => {
+//         const [expanded, setExpanded] = useState(false);
+//         if (expanded) {
+//             return (
+//                 <MovieItemDiv>
+//                     <MovieItemTopDiv>
+//                         <MovieItemElementDiv
+//                             onClick={() => setExpanded(!expanded)}
+//                         >
+//                             <Logo src={TriangleFill} />
+//                         </MovieItemElementDiv>
+//                         <MovieItemTitle>{movie.title}</MovieItemTitle>
+//                         <MovieItemElementDiv
+//                             // onClick={(movie) => MovieWatchlistAdd(movie)}
+//                         >
+//                             <Logo src={Star} />
+//                         </MovieItemElementDiv>
+//                     </MovieItemTopDiv>
+//                     <MovieItemDetailsDiv>
+//                         <MovieItemDetailsPoster
+//                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+//                             alt={`${movie.original_title} Poster`}
+//                         />
+//                         <MovieItemPlotDiv>
+//                             <StarRating stars={movie.vote_average / 2} />
+//                             {movie.overview}
+//                         </MovieItemPlotDiv>
+//                     </MovieItemDetailsDiv>
+//                 </MovieItemDiv>
+//             );
+//         } else {
+//             return (
+//                 <MovieItemDiv>
+//                     <MovieItemTopDiv>
+//                         <MovieItemElementDiv
+//                             onClick={() => setExpanded(!expanded)}
+//                         >
+//                             <Logo src={TriangleFill} />
+//                         </MovieItemElementDiv>
+//                         <MovieItemTitle>{movie.title}</MovieItemTitle>
+//                         <MovieItemElementDiv
+//                             // onClick={() => MovieWatchlistAdd(movie)}
+//                         >
+//                             <Logo src={Star} />
+//                         </MovieItemElementDiv>
+//                     </MovieItemTopDiv>
+//                 </MovieItemDiv>
+//             );
+//         }
+//     };
+
+//     return (
+//         // <h2>
+//         //     Placeholder
+//         // </h2>
+//         <MainMovieDiv>
+//             <h2>CollapsibleWatchlist</h2>
+//             {/* { watchlist && watchlist.map(
+//                         (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
+//                     )
+//                 } */}
+//             {watchList.map(
+//                 // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
+//                 (item, index) => (
+//                     <div>
+//                         <MovieItem movie={item} />
+//                     </div>
+//                 )
+//             )}
+//         </MainMovieDiv>
+//     );
+// };
 
 export const TemporaryContainer = styled.div`
     display: flex;
