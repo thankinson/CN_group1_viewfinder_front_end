@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
@@ -18,16 +17,16 @@ const StarRating = ({ stars }) =>  {
                     (item, index) => <SmallLogo src={Star} key= {`Star${index}`}/>
                     )
                 }
-            </StarDiv>
+        </StarDiv>
     ) 
     
 }
 export const CollapsibleWatchlist = ({ user, setUser, watchList, setWatchList }) => {
     const [watchlist, setWatchlist] = useState([]);
     const [movieJSONState, setMovieJSONState] = useState({});
-    const [backendWatchList, setBackendWatchList] = useState([74849 , 11, 74849 , 11 ]);
+    const [backendWatchList, setBackendWatchList] = useState([11, 11, 11]);
 
-    const setupBackendWatchList = async () => {
+    const createBackendWatchList = async () => {
         try {
             const response = await fetch(
                 `${process.env.REACT_APP_REST_API}watchlist`,
@@ -39,34 +38,62 @@ export const CollapsibleWatchlist = ({ user, setUser, watchList, setWatchList })
                 }
             );
             const data = await response.json();
-            console.log("setupBackendWatchList", await response.json());
+
+            // const response2 = await fetch(
+            //     `${process.env.REACT_APP_REST_API}watchlist`,
+            //     {
+            //         method: "GET",
+            //         headers: {
+            //             Authorization: `Bearer ${localStorage.getItem("myToken")}`,
+            //         },
+            //     }
+            // );
+            // console.log(await response2.json());
             setBackendWatchList(data);
+
         } catch (error) {
             console.log(error);
         }
         
     }
 
-    setupBackendWatchList();
+    
 
     const createMovieObjectArray = async () => {
-        for (let id of backendWatchList) {
-            try {
-                const response = await fetch(
-                    `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
-                );
-                const movieJSON = await response.json();
-                setWatchlist((watchlist) => [...watchlist, movieJSON]);
-                // console.log("createMovieObjectArray set watchlist to:", watchlist);
+        try {
+            const response = await fetch(
+                `${process.env.REACT_APP_REST_API}watchlist`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("myToken")}`,
+                    },
+                }
+            );
+            const data = await response.json();
+            setBackendWatchList(data);
 
+            for (let id of backendWatchList) {
+                try {
+                    const response = await fetch(
+                        `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
+                        );
+                        const movieJSON = await response.json();
+                        setWatchlist((watchlist) => [...watchlist, movieJSON]);
+                        // console.log("createMovieObjectArray set watchlist to:", watchlist);
+                        
+                    } catch (error) {
+                        console.log("Inner error", error);
+                    }
+                }
+                
             } catch (error) {
-                console.log(error);
+                console.log("Outer error", error);
             }
-        }
-        
     };
 
     const setMOR = () => {
+        // createBackendWatchList();
         createMovieObjectArray();
     }
 
