@@ -22,69 +22,29 @@ const StarRating = ({ stars }) =>  {
     ) 
     
 }
-export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {
-    const [watchlist, setWatchlist] = useState([]);
-    const [movieJSONState, setMovieJSONState] = useState({});
-
-    // listUserFilms(setWatchlist);
-
-    const retrieveMovieByID = async (id) => {
-        try {
-            const response = await fetch(
-                `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
-            );
-            const movieJSON = await response.json();
-            // console.log(movieJSON);
-            setMovieJSONState(movieJSON);
-            // console.log("movieJSONState", movieJSONState);
-            return movieJSONState;
-            // setWatchlist([...watchlist, movieJSON]);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    // console.log("retrieveMovieByID", retrieveMovieByID(2));
-
+export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {    
+    const [watchList, setWatchList] = useState(watchList);
+    
     const backendWatchList = [74849 , 11, 74849 , 11 ];
-    // const fakeWatchlist = [
-    //     // { id: 454626, title: "A film", img: "" },
-    //     // { id: 2 },
-    //     // { id: 3 },
-    // ];
-    // const createMovieObjectArray = () => {
-        
-    //     // console.log("backendWatchList", backendWatchList);
-        
-    //     let tempBackendWatchList = [];
-    //     for (let x of backendWatchList) {
-    //         // console.log(retrieveMovieByID(x));
-    //         setMovieJSONState(retrieveMovieByID(x));
-    //         // tempBackendWatchList.push(retrieveMovieByID(x));
-    //         tempBackendWatchList.push(movieJSONState);
-    //         setWatchlist((watchlist) => [...watchlist, retrieveMovieByID(x)]);
-    //     }
-    //     // console.log("tempBackendWatchList", tempBackendWatchList)
-    //     // // setWatchlist(tempBackendWatchList);
-    //     console.log("createMovieObjectArray set watchlist to:", watchlist);
-        
-    // };
-
     const createMovieObjectArray = async () => {
-        let tempBackendWatchList = [];
+        let movieObjectArray = [];
+
         for (let id of backendWatchList) {
             try {
+                console.log("fetching film id:", id);
                 const response = await fetch(
                     `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
                 );
                 const movieJSON = await response.json();
-                setWatchlist((watchlist) => [...watchlist, movieJSON]);
-
+                // setWatchList((watchList) => [...watchList, movieJSON]);
+                movieObjectArray = [...movieObjectArray, movieJSON];
+                console.log("Adding movie ", movieJSON.title);
             } catch (error) {
                 console.log(error);
             }
         }
-        console.log("createMovieObjectArray set watchlist to:", watchlist);
+        ;
+        console.log("createMovieObjectArray set watchlist to:", watchList);
         
     };
 
@@ -170,7 +130,7 @@ export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {
                         (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
                     )
                 } */}
-            {watchlist.map(
+            {watchList.map(
                 // (item, index) => <MovieItem movie = {RetrieveMovieByID(item)} />
                 (item, index) => (
                     <div>
