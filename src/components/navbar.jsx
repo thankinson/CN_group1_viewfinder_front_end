@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom"
+import styled from 'styled-components';
+import '../styles/navbar.css'
+import { logout } from '../utils/index'
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -14,7 +17,8 @@ function Navbar() {
               Put FLIXYGUY here
             </NavLink>
   
-            <ul className={click ? "nav-menu active" : "nav-menu"}>
+            {/* <ul className={click ? "nav-menu active" : "nav-menu"}> */}
+            <ul className='nav-list'>
               <li className="nav-item">
                 <NavLink
                   exact
@@ -22,7 +26,7 @@ function Navbar() {
                   activeClassName="active"
                   className="nav-links"
                 >
-                  Home
+                  HOME
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -32,7 +36,7 @@ function Navbar() {
                   activeClassName="active"
                   className="nav-links"
                 >
-                  watchlist
+                  WATCHLIST
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -42,7 +46,7 @@ function Navbar() {
                   activeClassName="active"
                   className="nav-links"
                 >
-                  Settings
+                  SETTINGS
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -51,8 +55,9 @@ function Navbar() {
                   to="/"
                   activeClassName="active"
                   className="nav-links"
+                  onClick={logout}
                 >
-                  Log Out
+                  LOG OUT
                 </NavLink>
               </li>
             </ul>
@@ -61,5 +66,6 @@ function Navbar() {
       </>
     );
   }
+
   
-  export default Navbar;
+export default Navbar;

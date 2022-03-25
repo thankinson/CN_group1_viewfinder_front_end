@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/footer";
 import { updatePass, updateEmail } from "../utils";
+import Navbar from '../components/navbar'
 
 export const UserSettings = ({ user, setUser }) => {
     //Changes document title on load
