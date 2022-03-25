@@ -55,7 +55,7 @@ function Navbar() {
                   to="/"
                   activeClassName="active"
                   className="nav-links"
-                  // onClick={logout}
+                  onClick={logout}
                 >
                   LOG OUT
                 </NavLink>
