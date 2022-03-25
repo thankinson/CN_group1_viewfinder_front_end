@@ -22,7 +22,7 @@ const StarRating = ({ stars }) =>  {
     ) 
     
 }
-export const CollapsibleWatchlist = ({ user }) => {
+export const CollapsibleWatchlist = ({ user, watchList, setWatchList }) => {
     const [watchlist, setWatchlist] = useState([]);
     const [movieJSONState, setMovieJSONState] = useState({});
 

@@ -30,9 +30,7 @@ const StarRating = ({ stars }) =>  {
     
 }
 
-export let movieWatchlistArray = [];
-
-export const CollapsibleSearch = ( { user } ) => {
+export const CollapsibleSearch = ( { user, watchList, setWatchList } ) => {
     
     const [movieSearch, setMovieSearch] = useState();
     const [movieResults, setMovieResults] = useState([]);

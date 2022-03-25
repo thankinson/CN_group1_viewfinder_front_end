@@ -10,12 +10,12 @@ import {
 //     document.title = "This is a title"
 //   }, [])
 
-export const WatchList = ({ user }) => {
+export const WatchList = ({ user, watchList, setWatchlist }) => {
     return (
         <>
             <Navbar />
             <TemporaryContainer>
-                <CollapsibleWatchlist user={user} />
+                <CollapsibleWatchlist user = {user} watchList = {watchList} setWatchlist = {setWatchlist} />
             </TemporaryContainer>
             <Footer />
         </>
