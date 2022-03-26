@@ -148,49 +148,52 @@ export const CollapsibleSearch = ( { user } ) => {
                 <MovieItemDiv>
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title}</MovieItemTitle>
+                        <MovieItemTitle>{movie.title} ({movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
                             <Logo src={Star}/>
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
                     
-                        <MovieItemDetailsDiv>
+                        <div className='movie-item-details'>
+                            <div className='movie-info'>
+                                <img className='movie-poster' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
+                                <MovieItemPlotDiv>
+                                    <StarRating stars={movie.vote_average/2}/>
+                                    {movie.vote_average}<br></br>
+                                    {movie.overview}
+                                </MovieItemPlotDiv>
+                            </div>
 
-                            <MovieItemDetailsPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.original_title} Poster`} /> 
-                            <MovieItemPlotDiv>
-                                <StarRating stars={movie.vote_average/2}/>
-                                {movie.overview}
-                            </MovieItemPlotDiv>
-                        </MovieItemDetailsDiv>
-                        <div className="streaming-div">
-                        <div className="service-tab-picker">
-                            <div className="tab">
-                                <button className="tab-links" onClick={(event) => openTab(event, "Netflix")}>Netflix</button>
-                                <button className="tab-links" onClick={(event) => openTab(event, "Prime")}>Prime</button>
-                                <button className="tab-links" onClick={(event) => openTab(event, "Disney+")}>Disney+</button>
-                            </div>
-	  
-                            <div id="Netflix" class="tab-content">
-                                <h3>Netflix</h3>
-                                <div className="region-container">
-                                    {movie.netflix.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
-                                </div>
-                               
-                            </div>
-                            <div id="Prime" class="tab-content">
-                                <h3>Prime</h3>
-                                <div className="region-container">
-                                    {movie.amazonPrime.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
-                                </div>
-                            </div>
-                            <div id="Disney+" class="tab-content">
-                                <h3>Disney+</h3>
-                                <div className="region-container">
-                                    {movie.disneyPlus.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
+                            <div className="streaming-div">
+                                <div className="service-tab-picker">
+                                    <div className="tab">
+                                        <button className="tab-links" onClick={(event) => openTab(event, "Netflix")}>Netflix</button>
+                                        <button className="tab-links" onClick={(event) => openTab(event, "Prime")}>Prime</button>
+                                        <button className="tab-links" onClick={(event) => openTab(event, "Disney+")}>Disney+</button>
+                                    </div>
+            
+                                    <div id="Netflix" class="tab-content">
+                                        <h3>Netflix</h3>
+                                        <div className="region-container">
+                                            {movie.netflix.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
+                                        </div>
+                                    
+                                    </div>
+                                    <div id="Prime" class="tab-content">
+                                        <h3>Prime</h3>
+                                        <div className="region-container">
+                                            {movie.amazonPrime.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
+                                        </div>
+                                    </div>
+                                    <div id="Disney+" class="tab-content">
+                                        <h3>Disney+</h3>
+                                        <div className="region-container">
+                                            {movie.disneyPlus.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </MovieItemDiv>
             )
         }
@@ -199,7 +202,7 @@ export const CollapsibleSearch = ( { user } ) => {
                 <MovieItemDiv>
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title}</MovieItemTitle>
+                        <MovieItemTitle>{movie.title} ({movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
                         <Logo src={Star}/>
                         </MovieItemElementDiv>
@@ -210,26 +213,18 @@ export const CollapsibleSearch = ( { user } ) => {
     }
         
     return (
-        <MainMovieDiv>
-            
+        <MainMovieDiv> 
                 <MovieSearchDiv onSubmit={(e) => SearchMovie(e,movieSearch)}>
-                {/* MovieSearchDiv */}
-                {/* <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} /> */}
-                <MovieSearchInput onChange={(e) => setMovieSearch(e.target.value)} />
+                    <MovieSearchInput onChange={(e) => setMovieSearch(e.target.value)} />
                     <button onClick={() => SearchMovie(movieSearch)}>Search</button>
-
                 </MovieSearchDiv>
                 {movieResults && movieResults.map( (item, index) => {
                     return (
                             <MovieItem movie = {item}/>
                     )
                 })}
-                            
-
         </MainMovieDiv>
     )
-
-
 }
 
 
@@ -239,14 +234,15 @@ export const TemporaryContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     border: black 4px dashed;
-    background-color: lightblue;
+    // background-color: lightblue;
     padding: 2px;
 `
 const MainMovieDiv = styled.div`
-    width: 70%;
+    width: 85%;
     display: flex;
     flex-direction: column;
     border: red 4px solid;
+    alignItems: center;
 `
 const MovieSearchDiv = styled.form`
     display: flex;
@@ -284,21 +280,23 @@ const SmallLogo = styled.img`
 
 const MovieItemDiv = styled.div`
     display: flex;
-    border: black 4px solid;
+    border: blue 4px solid;
     margin: 2px;
+    width: 80%;
     flex-direction: column;
     align-items: center;
+    background-color: cyan;
 `
 
 const MovieItemTopDiv = styled.div`
     display: flex;
-    border: black 4px solid;
+    border: pink 4px solid;
     margin: 2px;
     flex-direction: row;
     align-items: center;
     height: 3em;
-    // background: cyan;
-    width: 24em;
+    background: cyan;
+    width: 80%;
 `
 
 const StarDiv = styled.div`
@@ -310,33 +308,30 @@ const MovieItemElementDiv = styled.div`
     // display: flex;
     // justify-content: stretch;
     // align-items: stretch;
-    border: black 4px solid;
+    border: orange 4px solid;
     margin: 2px;
     height: 2em;
     width: 2em;
-    // background-color: red;
+    // background-color: cyan;
 `
 const MovieItemDetailsDiv = styled.div`
-    display: flex;
+    
     flex-direction: row;
-    border: black 4px solid;
+    border: grey 4px solid;
     margin: 2px;
     flex: 1;
-    width: 24em;
+    width: 100%;
     // height: 2em;
     // width: 2em;
 `
 
 const MovieItemDetailsPoster = styled.img`
-    width: 30%;
+    max-height: 300px;
 `
 const MovieItemPlotDiv = styled.div`
-    border: black 4px solid;
+    border: purple 4px solid;
     margin: 2px;
-    flex: 1;
-    width: 50%;
-    // height: 2em;
-    // width: 2em;
+    
 `
 const MovieItemTitle = styled.p`
     flex: 1;
