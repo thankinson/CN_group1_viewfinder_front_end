@@ -9,6 +9,7 @@ import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, listUserFilms } from "../utils";
 import '../styles/collabsibleMovie.css'
+import Flags from 'country-flag-icons/react/3x2'
 
 
 
@@ -65,7 +66,8 @@ export const CollapsibleSearch = ( { user } ) => {
         addFilm(user, movie);
     }
 
-    const SearchMovie = async (searchString) => {
+    const SearchMovie = async (e,searchString) => {
+        e.preventDefault();
         try {
             // Fetch 'n' number of films
             const response = await fetch (`https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_API_KEY}&query=${searchString}`);
@@ -171,20 +173,20 @@ export const CollapsibleSearch = ( { user } ) => {
                             <div id="Netflix" class="tab-content">
                                 <h3>Netflix</h3>
                                 <div className="region-container">
-                                    {movie.netflix.map( region => <p>{region}</p>)}
+                                    {movie.netflix.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
                                 </div>
                                
                             </div>
                             <div id="Prime" class="tab-content">
                                 <h3>Prime</h3>
                                 <div className="region-container">
-                                    {movie.amazonPrime.map( region => <p>{region}</p>)}
+                                    {movie.amazonPrime.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
                                 </div>
                             </div>
                             <div id="Disney+" class="tab-content">
                                 <h3>Disney+</h3>
                                 <div className="region-container">
-                                    {movie.disneyPlus.map( region => <p>{region}</p>)}
+                                    {movie.disneyPlus.map( region => <div><img className='region-flag' alt={region} src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${region}.svg`}/> {region}</div>)}
                                 </div>
                             </div>
                         </div>
@@ -209,10 +211,8 @@ export const CollapsibleSearch = ( { user } ) => {
         
     return (
         <MainMovieDiv>
-            <h2>
-                CollapsibleSearch
-            </h2>
-                <MovieSearchDiv>
+            
+                <MovieSearchDiv onSubmit={(e) => SearchMovie(e,movieSearch)}>
                 {/* MovieSearchDiv */}
                 {/* <MovieSearchInput onClick={(e) => SearchMovie(e.target.value)} /> */}
                 <MovieSearchInput onChange={(e) => setMovieSearch(e.target.value)} />
@@ -243,14 +243,14 @@ export const TemporaryContainer = styled.div`
     padding: 2px;
 `
 const MainMovieDiv = styled.div`
-    width: 36em;
+    width: 70%;
     display: flex;
     flex-direction: column;
-    border: black 4px solid;
+    border: red 4px solid;
 `
-const MovieSearchDiv = styled.div`
+const MovieSearchDiv = styled.form`
     display: flex;
-    border: black 4px solid;
+    border: green 4px solid;
     margin: 2px;
     flex-direction: row;
     justify-content: center;

@@ -36,7 +36,12 @@
 
   .region-container {
       min-height: fit-content;
+      max-height:400px;
       display:flex;
       flex-direction: column;
       flex-wrap: wrap;
+  }
+
+  .region-flag {
+    height: 12px;
   }
