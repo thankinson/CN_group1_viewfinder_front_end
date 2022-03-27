@@ -148,7 +148,7 @@ export const CollapsibleSearch = ( { user } ) => {
                 <MovieItemDiv>
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title} ({movie.release_date.substring(0,4)})</MovieItemTitle>
+                        <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
                             <Logo src={Star}/>
                         </MovieItemElementDiv>
@@ -202,7 +202,7 @@ export const CollapsibleSearch = ( { user } ) => {
                 <MovieItemDiv>
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
-                        <MovieItemTitle>{movie.title} ({movie.release_date.substring(0,4)})</MovieItemTitle>
+                        <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
                         <Logo src={Star}/>
                         </MovieItemElementDiv>
