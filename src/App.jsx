@@ -13,14 +13,15 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+            {/* <Route path="/" element={user ?  <Home user={user} setUser={setUser} /> : <Login user={user} setUser={setUser} />} /> */}
                 <Route
                     path="/"
-                    element={<Login user={user} setUser={setUser} />}
+                    element={user ? <Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/> : <Login user={user} setUser={setUser} /> }
                 />
-                <Route
+                {/* <Route
                     path="/home"
                     element={<Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/>}
-                />
+                /> */}
                 <Route
                     path="/user"
                     element={<UserSettings user={user} setUser={setUser} />}
