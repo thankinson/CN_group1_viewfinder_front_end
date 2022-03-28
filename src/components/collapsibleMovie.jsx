@@ -1,6 +1,5 @@
 // Collapsible Bar
 import { useState, useEffect } from "react";
-import Collapsible from "react-collapsible";
 import "../globalstyles/styles.css";
 import styled from "styled-components";
 import Star from "../assets/star.svg";
@@ -8,7 +7,7 @@ import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, listUserFilms } from "../utils";
-import '../styles/collabsibleMovie.css'
+import '../styles/collapsibleMovie.css'
 import Flags from 'country-flag-icons/react/3x2'
 
 
@@ -27,7 +26,7 @@ const StarRating = ({ stars }) =>  {
                     (item, index) => <SmallLogo src={Star} key= {`Star${index}`}/>
                     )
                 }
-            </StarDiv>
+        </StarDiv>
     ) 
     
 }
@@ -62,8 +61,14 @@ export const CollapsibleSearch = ( { user } ) => {
     const [movieSearch, setMovieSearch] = useState();
     const [movieResults, setMovieResults] = useState([]);
 
-    const MovieWatchlistAdd = ( movie ) => {
-        addFilm(user, movie);
+    const movieWatchlistAdd = async ( movie ) => {
+        console.log("movieWatchlistAdd", user, movie);
+        await addFilm(user, movie);
+    }
+
+    const movieWatchlistRemove = async ( movie ) => {
+        console.log("movieWatchlistRemove", user, movie);
+        // await removeFilm(user, movie);
     }
 
     const SearchMovie = async (e,searchString) => {
@@ -142,15 +147,34 @@ export const CollapsibleSearch = ( { user } ) => {
 
     const MovieItem = ( {movie} ) => {
         const [expanded, setExpanded] = useState(false);
-        console.log("MovieItem:",movie.id, movie.title);
+        const [removeFlag, setRemoveFlag] = useState(false);
+
+        // console.log("MovieItem:",movie.id, movie.title);
         if (expanded) {
             return (
                 <MovieItemDiv>
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
+                        <MovieItemElementDiv onClick={
+                            () => { 
+                                    if (removeFlag) {
+                                        movieWatchlistRemove(movie.id);
+                                    } else {
+                                        movieWatchlistAdd(movie.id);
+                                    }
+                                    // setRemoveFlag(!removeFlag);
+                                }
+
+                            }>
+
                             <Logo src={Star}/>
+                            {/* {() => {    if (removeFlag)
+                                        {
+                                            <Logo src={Star}/>
+                                        }
+                                    }
+                            } */}
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
                     
@@ -203,8 +227,24 @@ export const CollapsibleSearch = ( { user } ) => {
                     <MovieItemTopDiv>
                         <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
-                        <MovieItemElementDiv onClick={() => MovieWatchlistAdd(movie)}>
-                        <Logo src={Star}/>
+                        <MovieItemElementDiv onClick={
+                            () => { 
+                                    if (removeFlag) {
+                                        movieWatchlistRemove(movie.id);
+                                    } else {
+                                        movieWatchlistAdd(movie.id);
+                                    }
+                                    // setRemoveFlag(!removeFlag);
+                                }
+
+                            }>
+                            <Logo src={Star}/>
+                            {/* {() => {    if (removeFlag)
+                                        {
+                                            <Logo src={Star}/>
+                                        }
+                                    }
+                            } */}
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
                 </MovieItemDiv>
