@@ -15,7 +15,7 @@ useEffect(() => {
 export const WatchList = ({ user }) => {
     return (
         <>
-            // Navigates user to homepage if not logged in
+            {/* // Navigates user to homepage if not logged in */}
             {!user && <Navigate to="/" />}
             <Navbar />
             <TemporaryContainer>
