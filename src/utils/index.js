@@ -127,11 +127,6 @@ export const addFilm = async (user, film) => {
 
 export const listUserFilms = async (setter) => {
     try {
-        console.log(
-            listUserFilms,
-            `Header = Authorization: Bearer ${localStorage.getItem("myToken")}`,
-            `await fetch(${process.env.REACT_APP_REST_API}watchlist`
-        );
         const response = await fetch(
             `${process.env.REACT_APP_REST_API}watchlist`,
             {
@@ -142,7 +137,26 @@ export const listUserFilms = async (setter) => {
             }
         );
         const data = await response.json();
-        setter(data);
+
+        let movieArr = [];
+        for (let id of data) {
+            try {
+                const response = await fetch(
+                    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
+                    );
+                    const movieJSON = await response.json();
+                    // setWatchlist((watchlist) => [...watchlist, movieJSON]);
+                    // tempWatchlist = [...tempWatchlist, movieJSON];
+                    movieArr.push(movieJSON);
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        setter(movieArr);
+            // setWatchlist(tempWatchlist);
+        console.log("createMovieObjectArray set watchlist to:", movieArr);
+
     } catch (error) {
         console.log(error);
     }
