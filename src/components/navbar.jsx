@@ -1,10 +1,11 @@
 // nav bar
 
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import styled from 'styled-components';
 import '../styles/navbar.css'
 import { logout } from '../utils/index'
+import Flixy from "../Flixy.svg";
 
 export const Navbar = () => {
     const [click, setClick] = useState(false);
@@ -13,9 +14,9 @@ export const Navbar = () => {
       <>
         <nav className="navbar">
           <div className="nav-container">
-            <NavLink exact to="/" className="nav-logo">
-              Put FLIXYGUY here
-            </NavLink>
+            <Link exact to="/" className="nav-logo">
+              <img src= {Flixy} className="App-logo" alt="logo"/>
+            </Link>
   
             {/* <ul className={click ? "nav-menu active" : "nav-menu"}> */}
             <ul className='nav-list'>
