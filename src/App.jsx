@@ -16,7 +16,7 @@ function App() {
            
                 <Route
                     path="/"
-                    element={user ? <Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/> : <Login user={user} setUser={setUser} /> }
+                    element={<Login user={user} setUser={setUser} />}
                 />
                 <Route 
                     path="/home"
