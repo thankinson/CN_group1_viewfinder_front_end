@@ -7,15 +7,16 @@ import {
 } from "../components/collapsibleWatchlist";
 import { Navigate } from "react-router-dom";
 
-// useEffect(() => {
-//     document.title = "This is a title"
-//   }, [])
+//Changes document title on load
+useEffect(() => {
+    document.title = "ViewFinder | Watchlist";
+}, []);
 
 export const WatchList = ({ user }) => {
     return (
         <>
-        // Navigates user to homepage if not logged in
-        {!user && <Navigate to="/" />}
+            {/* // Navigates user to homepage if not logged in */}
+            {!user && <Navigate to="/" />}
             <Navbar />
             <TemporaryContainer>
                 <CollapsibleWatchlist user={user} />

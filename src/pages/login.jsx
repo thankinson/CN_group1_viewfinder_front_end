@@ -18,7 +18,7 @@ export const Login = ({ user, setUser }) => {
     const [bool, setBool] = useState(false);
 
     useEffect(() => {
-        document.title = "Login / ViewFinder";
+        document.title = "ViewFinder | Login";
     }, []);
 
     // Try a token login
@@ -47,8 +47,8 @@ export const Login = ({ user, setUser }) => {
 
     return (
         <>
-        // Navigates user to homepage if not logged in
-        {user && <Navigate to="/home" />}
+            // Navigates user to homepage if not logged in
+            {user && <Navigate to="/home" />}
             <div className="login-section">
                 <div className="login-container">
                     {user && <Navigate to="/home" />}
