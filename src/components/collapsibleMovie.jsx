@@ -8,7 +8,7 @@ import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, listUserFilms } from "../utils";
-import '../styles/collabsibleMovie.css'
+import '../styles/collapsibleMovie.css'
 import Flags from 'country-flag-icons/react/3x2'
 
 
