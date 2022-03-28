@@ -48,7 +48,7 @@ export const tokenLogin = async (setter) => {
         });
         const data = await response.json();
         setter(data.user);
-        localStorage.setItem("myToken");
+        // localStorage.setItem("myToken");
     } catch (error) {
         console.log(error);
     }
