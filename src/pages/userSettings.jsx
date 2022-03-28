@@ -10,7 +10,7 @@ export const UserSettings = ({ user, setUser }) => {
 
     //Changes document title on load
     useEffect(() => {
-        document.title = "Account / ViewFinder";
+        document.title = "ViewFinder | Account";
     }, []);
 
     //useEffect for getting user data here? Stretch goal
@@ -27,8 +27,8 @@ export const UserSettings = ({ user, setUser }) => {
 
     return (
         <>
-        // Navigates user to homepage if not logged in
-        {!user && <Navigate to="/" />}
+            {/* // Navigates user to homepage if not logged in */}
+            {!user && <Navigate to="/" />}
             <Navbar />
             <div id="settings-greeting">
                 <h2>Welcome {user}!</h2>
