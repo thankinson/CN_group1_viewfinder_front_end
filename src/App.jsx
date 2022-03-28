@@ -13,14 +13,13 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-           
                 <Route
                     path="/"
-                    element={user ? <Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/> : <Login user={user} setUser={setUser} /> }
+                    element={<Login user={user} setUser={setUser} />}
                 />
-                <Route 
+                <Route
                     path="/home"
-                    element={<Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/> }
+                    element={<Home user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/>}
                 />
                 <Route
                     path="/user"
@@ -28,7 +27,7 @@ function App() {
                 />
                 <Route
                     path="/watchlist"
-                    element={<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {watchList}/>}
+                    element={<WatchList user={user} setUser={setUser} watchList = {watchList} setWatchList = {setWatchList}/>}
                 />
             </Routes>
         </BrowserRouter>
