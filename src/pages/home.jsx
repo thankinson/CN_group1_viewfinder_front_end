@@ -15,12 +15,12 @@ export const Home = (props) => {
     return (
         <>
             <Navbar />
-            <form>
+            {/* <form>
                 <input type="search" placeholder="search for a film..." />
                 <button className="search-button" type="submit">
                     Search
                 </button>
-            </form>
+            </form> */}
 
             <div className="search-results-container">
                 {/* map thru search results, make collapsable comp for each */}

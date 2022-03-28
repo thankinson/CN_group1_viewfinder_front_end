@@ -2,12 +2,19 @@
 
 .nav-container {
     display: flex;
+    padding: 10px;
+    padding-bottom: 20px;
     height: 10vh;
     justify-content: space-between;
 }
 
-.nav-logo {
-    border: red solid 2px;
+.App-logo {
+    max-height: 100px;
+    padding: 5px;
+}
+
+.App-logo:hover {
+    filter: drop-shadow(1px 1px 1px white );
 }
 
 .nav-list {
@@ -18,6 +25,7 @@
     margin: 0;
     padding: 0;
     border: white dotted 4px;
+    box-shadow: 0 0 8px white;
 }
 
 .nav-item {
@@ -29,7 +37,7 @@
     flex-direction: column;
     justify-content: center;
     border: rgb(20, 20, 18) solid 2px;
-    filter: brightness(95%);
+    filter: brightness(92%);
     min-width: fit-content;
     width:25%;
 
@@ -38,14 +46,24 @@
     background-size: 20px 20px;
     background-image:  repeating-linear-gradient(
         0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
-    
 }
-
-
 
 .nav-item:hover {
     filter: brightness(100%);
     z-index: 2;
+    animation: flicker 3s linear 1s forwards infinite;    
+}
+
+@keyframes flicker {
+    0%{filter:brightness(1);}
+    15%{filter:brightness(1);}
+    16%{filter:brightness(0.8);}
+    17%{filter:brightness(1);}
+    18%{filter:brightness(0.8);}
+    19%{filter:brightness(1);}
+    70%{filter:brightness(1);}
+    71%{filter:brightness(0.9);}
+    72%{filter:brightness(1);}
 }
 
 .nav-links {
