@@ -127,11 +127,15 @@ export const addFilm = async (user, film) => {
 
 export const listUserFilms = async (setter) => {
     try {
-        console.log(
-            listUserFilms,
-            `Header = Authorization: Bearer ${localStorage.getItem("myToken")}`,
-            `await fetch(${process.env.REACT_APP_REST_API}watchlist`
-        );
+
+        /////
+        // console.log(
+        //     listUserFilms,
+        //     `Header = Authorization: Bearer ${localStorage.getItem("myToken")}`,
+        //     `await fetch(${process.env.REACT_APP_REST_API}watchlist`
+        // );
+        /////
+
         const response = await fetch(
             `${process.env.REACT_APP_REST_API}watchlist`,
             {
