@@ -5,6 +5,7 @@ import {
     CollapsibleWatchlist,
     TemporaryContainer,
 } from "../components/collapsibleWatchlist";
+import { Navigate } from "react-router-dom";
 
 // useEffect(() => {
 //     document.title = "This is a title"
@@ -13,6 +14,8 @@ import {
 export const WatchList = ({ user }) => {
     return (
         <>
+        // Navigates user to homepage if not logged in
+        {!user && <Navigate to="/" />}
             <Navbar />
             <TemporaryContainer>
                 <CollapsibleWatchlist user={user} />

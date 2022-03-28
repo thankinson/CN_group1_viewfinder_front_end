@@ -47,6 +47,8 @@ export const Login = ({ user, setUser }) => {
 
     return (
         <>
+        // Navigates user to homepage if not logged in
+        {user && <Navigate to="/home" />}
             <div className="login-section">
                 <div className="login-container">
                     {user && <Navigate to="/home" />}
