@@ -143,20 +143,40 @@ export const listUserFilms = async (setter) => {
             try {
                 const response = await fetch(
                     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
-                    );
-                    const movieJSON = await response.json();
-                    // setWatchlist((watchlist) => [...watchlist, movieJSON]);
-                    // tempWatchlist = [...tempWatchlist, movieJSON];
-                    movieArr.push(movieJSON);
-
-                } catch (error) {
-                    console.log(error);
-                }
+                );
+                const movieJSON = await response.json();
+                // setWatchlist((watchlist) => [...watchlist, movieJSON]);
+                // tempWatchlist = [...tempWatchlist, movieJSON];
+                movieArr.push(movieJSON);
+            } catch (error) {
+                console.log(error);
             }
+        }
         setter(movieArr);
-            // setWatchlist(tempWatchlist);
+        // setWatchlist(tempWatchlist);
         console.log("createMovieObjectArray set watchlist to:", movieArr);
+    } catch (error) {
+        console.log(error);
+    }
+};
 
+export const removeFilm = async (user, removedFilm) => {
+    try {
+        const response = await fetch(
+            `${process.env.REACT_APP_REST_API}watchlist`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: {
+                    user: user,
+                    removefilm: removedFilm,
+                },
+            }
+        );
+        const data = response.json();
+        console.log(data);
     } catch (error) {
         console.log(error);
     }
