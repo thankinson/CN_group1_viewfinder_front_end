@@ -15,8 +15,8 @@ export const Footer = () => {
                         <a href="https://github.com/thankinson">
                             Tom Hankinson
                         </a>
-                        , <a href="https://github.com/Cha-M">Sha Megroff</a>,
-                        <a href="https://github.com/GlennPS">Glenn Sculthorp</a>
+                        , <a href="https://github.com/Cha-M">Sha Megroff</a>
+                        , <a href="https://github.com/GlennPS">Glenn Sculthorp</a>
                         , and{" "}
                         <a href="https://github.com/web-lynx">
                             Alexander R. Wayland
