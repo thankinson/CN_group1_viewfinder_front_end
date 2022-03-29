@@ -16,7 +16,7 @@ export const Home = ({ user, setUser, watchList, setWatchList }) => {
 
     return (
         <>
-            // Navigates user to homepage if not logged in
+            {/* // Navigates user to homepage if not logged in */}
             {!user && <Navigate to="/" />}
             <Navbar />
             {/* <form>
