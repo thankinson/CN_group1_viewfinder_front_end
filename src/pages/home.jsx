@@ -7,17 +7,21 @@ import {
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
 import { Navigate } from "react-router-dom";
-import { createUser, login, tokenLogin } from "../utils/index";
+import { tokenLogin } from "../utils/index";
 
 export const Home = ({ user, setUser, watchList, setWatchList }) => {
     useEffect(() => {
         document.title = "ViewFinder | Home";
     }, []);
 
+    // Navigates user to homepage if not logged in
+    if (!user && !localStorage.key("myToken")) {<Navigate to="/" />}
+    else if (!user && localStorage.key("myToken")) {tokenLogin({setUser})}
+
+
     return (
         <>
-            {/* // Navigates user to homepage if not logged in */}
-            {!user && <Navigate to="/" />}
+ 
             <Navbar setUser={setUser}/>
             {/* <form>
                 <input type="search" placeholder="search for a film..." />
