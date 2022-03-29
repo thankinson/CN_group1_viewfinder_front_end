@@ -54,9 +54,10 @@ export const tokenLogin = async (setter) => {
     }
 };
 
-export const logout = () => {
+export const logout = ({ setUser }) => {
     localStorage.clear();
-    window.location.reload(false);
+    // window.location.reload(false);
+    setUser()
 };
 
 export const deleteUser = async (user) => {
