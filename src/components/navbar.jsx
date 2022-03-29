@@ -20,7 +20,8 @@ const links = [{
 },
 {
     to: "/",
-    label: "LOGOUT"
+    label: "LOGOUT",
+    onClick: logout
 }];
 
 export const Navbar = () => {
@@ -34,6 +35,7 @@ export const Navbar = () => {
                         to={link.to}
                         activeClassName="active"
                         className="nav-links"
+                        onClick={link.onClick}
                     >
                         {link.label}
                     </NavLink>
