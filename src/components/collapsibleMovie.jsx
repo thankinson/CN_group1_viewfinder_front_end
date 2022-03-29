@@ -183,12 +183,12 @@ export const CollapsibleSearch = ( { user } ) => {
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
                                     console.log("removeFlag", removeFlag);
-                                    setRemoveFlag(true);
+                                    // setRemoveFlag(true);
                                     console.log("removeFlag", removeFlag);
                                     movieWatchlistAdd(movie.id);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
-                                    setRemoveFlag(false);
+                                    // setRemoveFlag(false);
                                     movieWatchlistRemove(movie.id);
                                 }
                                 // setRemoveFlag(!removeFlag);
