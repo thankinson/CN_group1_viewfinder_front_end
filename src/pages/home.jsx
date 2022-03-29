@@ -18,7 +18,7 @@ export const Home = ({ user, setUser, watchList, setWatchList }) => {
         <>
             {/* // Navigates user to homepage if not logged in */}
             {!user && <Navigate to="/" />}
-            <Navbar />
+            <Navbar setUser={setUser}/>
             {/* <form>
                 <input type="search" placeholder="search for a film..." />
                 <button className="search-button" type="submit">

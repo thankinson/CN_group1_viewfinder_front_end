@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
 
-export const WatchList = ({ user }) => {
+export const WatchList = ({ user, setUser  }) => {
 
     //Changes document title on load
     useEffect(() => {
@@ -20,7 +20,7 @@ export const WatchList = ({ user }) => {
         <>
             {/* // Navigates user to homepage if not logged in */}
             {!user && <Navigate to="/" />}
-            <Navbar />
+            <Navbar setUser={setUser}/>
             <TemporaryContainer>
                 <CollapsibleWatchlist user={user} />
             </TemporaryContainer>
