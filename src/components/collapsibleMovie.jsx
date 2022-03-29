@@ -161,6 +161,15 @@ export const CollapsibleSearch = ( { user } ) => {
         const [expanded, setExpanded] = useState(false);
         const [removeFlag, setRemoveFlag] = useState(false);
 
+        const LogoEffect = ( {logo1, logo2} ) => {
+            if ( watchlist.map(a => a.id).find(element => element == movie.id) == undefined ) {
+                return ( <Logo src={logo1}/>)
+            }
+            else {
+                return (<Logo src={logo2}/>)
+            }
+        }
+
         // console.log("MovieItem:",movie.id, movie.title);
         if (expanded) {
             return (
@@ -173,9 +182,13 @@ export const CollapsibleSearch = ( { user } ) => {
                                 console.log(watchlist.map(a => a.id).find(element => element == movie.id));
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
+                                    console.log("removeFlag", removeFlag);
+                                    setRemoveFlag(true);
+                                    console.log("removeFlag", removeFlag);
                                     movieWatchlistAdd(movie.id);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
+                                    setRemoveFlag(false);
                                     movieWatchlistRemove(movie.id);
                                 }
                                 // setRemoveFlag(!removeFlag);
@@ -183,13 +196,8 @@ export const CollapsibleSearch = ( { user } ) => {
 
                         }>
 
-                            <Logo src={Star}/>
-                            {/* {() => {    if (removeFlag)
-                                        {
-                                            <Logo src={Star}/>
-                                        }
-                                    }
-                            } */}
+                        <LogoEffect logo1={Star} logo2={StarFill}/>
+
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
 
@@ -298,6 +306,9 @@ export const CollapsibleSearch = ( { user } ) => {
                                 console.log(watchlist.map(a => a.id).find(element => element == movie.id));
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
+                                    console.log("removeFlag", removeFlag);
+                                    setRemoveFlag(true);
+                                    console.log("removeFlag", removeFlag);
                                     movieWatchlistAdd(movie.id);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
@@ -307,13 +318,8 @@ export const CollapsibleSearch = ( { user } ) => {
                             }
 
                         }>
-                            <Logo src={Star}/>
-                            {/* {() => {    if (removeFlag)
-                                        {
-                                            <Logo src={Star}/>
-                                        }
-                                    }
-                            } */}
+                        <LogoEffect logo1={Star} logo2={StarFill}/>
+
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
                 </MovieItemDiv>
