@@ -5,7 +5,7 @@ import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
-import { addFilm, listUserFilms } from "../utils";
+import { addFilm, removeFilm, listUserFilms } from "../utils";
 
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -18,97 +18,32 @@ const StarRating = ({ stars }) =>  {
                     (item, index) => <SmallLogo src={Star} key= {`Star${index}`}/>
                     )
                 }
-            </StarDiv>
+        </StarDiv>
     ) 
     
 }
 export const CollapsibleWatchlist = ({ user }) => {
     const [watchlist, setWatchlist] = useState([]);
-    const [movieJSONState, setMovieJSONState] = useState({});
 
-    // listUserFilms(setWatchlist);
-
-    const retrieveMovieByID = async (id) => {
-        try {
-            const response = await fetch(
-                `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
-            );
-            const movieJSON = await response.json();
-            // console.log(movieJSON);
-            setMovieJSONState(movieJSON);
-            // console.log("movieJSONState", movieJSONState);
-            return movieJSONState;
-            // setWatchlist([...watchlist, movieJSON]);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    // console.log("retrieveMovieByID", retrieveMovieByID(2));
-
-    const backendWatchList = [74849 , 11, 74849 , 11 ];
-    // const fakeWatchlist = [
-    //     // { id: 454626, title: "A film", img: "" },
-    //     // { id: 2 },
-    //     // { id: 3 },
-    // ];
-    // const createMovieObjectArray = () => {
-        
-    //     // console.log("backendWatchList", backendWatchList);
-        
-    //     let tempBackendWatchList = [];
-    //     for (let x of backendWatchList) {
-    //         // console.log(retrieveMovieByID(x));
-    //         setMovieJSONState(retrieveMovieByID(x));
-    //         // tempBackendWatchList.push(retrieveMovieByID(x));
-    //         tempBackendWatchList.push(movieJSONState);
-    //         setWatchlist((watchlist) => [...watchlist, retrieveMovieByID(x)]);
-    //     }
-    //     // console.log("tempBackendWatchList", tempBackendWatchList)
-    //     // // setWatchlist(tempBackendWatchList);
-    //     console.log("createMovieObjectArray set watchlist to:", watchlist);
-        
-    // };
-
-    const createMovieObjectArray = async () => {
-        let tempBackendWatchList = [];
-        for (let id of backendWatchList) {
-            try {
-                const response = await fetch(
-                    `https://api.themoviedb.org/3/movie/${id}?api_key=${REACT_APP_API_KEY}`
-                );
-                const movieJSON = await response.json();
-                setWatchlist((watchlist) => [...watchlist, movieJSON]);
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        console.log("createMovieObjectArray set watchlist to:", watchlist);
-        
-    };
-
-    const setMOR = () => {
-        createMovieObjectArray();
+    const movieWatchlistAdd = async ( movie ) => {
+        console.log("movieWatchlistAdd", user, movie);
+        // setWatchlist(watchlist.filter((item) => item.id !== movie));
+        setWatchlist([...watchlist, movie]);
+        await addFilm(user, movie);
     }
 
+    const movieWatchlistRemove = async ( movie ) => {
+        console.log("movieWatchlistRemove", user, movie);
+        setWatchlist(watchlist.filter((item) => item.id !== movie));
+        // setWatchlist([...watchlist, movie]);
+        await removeFilm(user, movie);
+    }
+            
     useEffect(
-        () => {
-        setMOR();
+        async () => {
+            await listUserFilms(setWatchlist);
     }, []);
-
-    // const mapFakeWatchlist = (fakeWatchlist) => {
-    //     return fakeWatchlist.map((item, index) => <p>{item.id}</p>);
-    // };
-
-//     return mapFakeWatchlist(fakeWatchlist);
-// };
-    // const MovieWatchlistAdd = (movie) => {
-    //     addFilm(movie);
-    //     setWatchlist(listUserFilms);
-    //     console.log(watchlist);
-    // };
-
+            
     const MovieItem = ({ movie }) => {
         const [expanded, setExpanded] = useState(false);
         if (expanded) {
@@ -121,9 +56,19 @@ export const CollapsibleWatchlist = ({ user }) => {
                             <Logo src={TriangleFill} />
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv
-                            // onClick={(movie) => MovieWatchlistAdd(movie)}
-                        >
+                        <MovieItemElementDiv onClick={
+                            () => {
+                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                        console.log("Not found on watchlist. Adding.")
+                                        movieWatchlistAdd(movie.id);
+                                    } else {
+                                        console.log("Found on watchlist. Removing.")
+                                        movieWatchlistRemove(movie.id);
+                                    }
+                                    // setRemoveFlag(!removeFlag);
+                                }
+
+                            }>
                             <Logo src={Star} />
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
@@ -149,9 +94,19 @@ export const CollapsibleWatchlist = ({ user }) => {
                             <Logo src={TriangleFill} />
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv
-                            // onClick={() => MovieWatchlistAdd(movie)}
-                        >
+                        <MovieItemElementDiv onClick={
+                            () => {
+                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    console.log("Not found on watchlist. Adding.")
+                                    movieWatchlistAdd(movie.id);
+                                } else {
+                                    console.log("Found on watchlist. Removing.")
+                                    movieWatchlistRemove(movie.id);
+                                }
+                                // setRemoveFlag(!removeFlag);
+                            }
+
+                        }>
                             <Logo src={Star} />
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>

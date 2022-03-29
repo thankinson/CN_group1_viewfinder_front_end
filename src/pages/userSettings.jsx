@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { updatePass, deleteUser } from "../utils";
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
+import { Navigate } from "react-router-dom";
 
 export const UserSettings = ({ user, setUser }) => {
     const [passUpdate, setPassUpdate] = useState();
 
     //Changes document title on load
     useEffect(() => {
-        document.title = "Account / ViewFinder";
+        document.title = "ViewFinder | Account";
     }, []);
 
     //useEffect for getting user data here? Stretch goal
@@ -26,9 +27,11 @@ export const UserSettings = ({ user, setUser }) => {
 
     return (
         <>
+            {/* // Navigates user to homepage if not logged in */}
+            {!user && <Navigate to="/" />}
             <Navbar />
             <div id="settings-greeting">
-                <h2>Welcome, {user}</h2>
+                <h2>Welcome {user}!</h2>
                 <p>Would you like to change your password?</p>
             </div>
             <form id="settings-change-password" onSubmit={submitHandler}>
