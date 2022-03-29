@@ -34,6 +34,12 @@ const StarRating = ({ stars }) =>  {
 export let movieWatchlistArray = [];
 
 export const CollapsibleSearch = ( { user } ) => {
+    const [watchlist, setWatchlist] = useState([]);
+            
+    useEffect(
+        async () => {
+            await listUserFilms(setWatchlist);
+    }, []);
 
     function openTab(e, serviceName) {
         // declare vars
@@ -158,10 +164,16 @@ export const CollapsibleSearch = ( { user } ) => {
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => { 
-                                    if (removeFlag) {
-                                        movieWatchlistRemove(movie.id);
-                                    } else {
+                                    console.log(movie);
+                                    console.log(watchlist.map(a => a.id));
+                                    console.log(watchlist.map(a => a.id).find(element => element == movie.id));
+
+                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                        console.log("Not found on watchlist. Adding.")
                                         movieWatchlistAdd(movie.id);
+                                    } else {
+                                        console.log("Found on watchlist. Removing.")
+                                        movieWatchlistRemove(movie.id);
                                     }
                                     // setRemoveFlag(!removeFlag);
                                 }
@@ -229,10 +241,16 @@ export const CollapsibleSearch = ( { user } ) => {
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => { 
-                                    if (removeFlag) {
-                                        movieWatchlistRemove(movie.id);
-                                    } else {
+                                    console.log(movie);
+                                    console.log(watchlist.map(a => a.id));
+                                    console.log(watchlist.map(a => a.id).find(element => element == movie.id));
+
+                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                        console.log("Not found on watchlist. Adding.")
                                         movieWatchlistAdd(movie.id);
+                                    } else {
+                                        console.log("Found on watchlist. Removing.")
+                                        movieWatchlistRemove(movie.id);
                                     }
                                     // setRemoveFlag(!removeFlag);
                                 }
