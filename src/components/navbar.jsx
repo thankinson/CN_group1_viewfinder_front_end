@@ -6,26 +6,26 @@ import { logout } from "../utils/index";
 import "../styles/navbar.css";
 import Flixy from "../Flixy.svg";
 
-const links = [{
-    to: "/home",
-    label: "HOME"
-},
-{
-    to: "/watchlist",
-    label: "WATCHLIST"
-},
-{
-    to: "/user",
-    label: "SETTINGS"
-},
-{
-    to: "/",
-    label: "LOGOUT",
-    onClick: logout
-}];
-
-export const Navbar = () => {
+export const Navbar = ({ setUser }) => {
     const [showBurger, setShowBurger] = React.useState(false)
+
+    const links = [{
+        to: "/home",
+        label: "HOME"
+    },
+    {
+        to: "/watchlist",
+        label: "WATCHLIST"
+    },
+    {
+        to: "/user",
+        label: "SETTINGS"
+    },
+    {
+        to: "/",
+        label: "LOGOUT",
+        onClick: ()=> logout(setUser)
+    }];
 
     const Links = () => (
         <>

@@ -29,7 +29,7 @@ export const UserSettings = ({ user, setUser }) => {
         <>
             {/* // Navigates user to homepage if not logged in */}
             {!user && <Navigate to="/" />}
-            <Navbar />
+            <Navbar setUser={setUser}/>
             <div id="settings-greeting">
                 <h2>Welcome {user}!</h2>
                 <p>Would you like to change your password?</p>
