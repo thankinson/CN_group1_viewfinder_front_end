@@ -6,7 +6,7 @@ import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
-import { addFilm, listUserFilms } from "../utils";
+import { addFilm, removeFilm, listUserFilms } from "../utils";
 import '../styles/collapsibleMovie.css'
 import Flags from 'country-flag-icons/react/3x2'
 
@@ -68,7 +68,7 @@ export const CollapsibleSearch = ( { user } ) => {
 
     const movieWatchlistRemove = async ( movie ) => {
         console.log("movieWatchlistRemove", user, movie);
-        // await removeFilm(user, movie);
+        await removeFilm(user, movie);
     }
 
     const SearchMovie = async (e,searchString) => {
