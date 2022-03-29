@@ -126,6 +126,28 @@ export const addFilm = async (user, film) => {
     }
 };
 
+export const removeFilm = async (user, removedFilm) => {
+    try {
+        const response = await fetch(
+            `${process.env.REACT_APP_REST_API}watchlist`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: user,
+                    removefilm: removedFilm,
+                }),
+            }
+        );
+        const data = response.json();
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export const listUserFilms = async (setter) => {
     try {
         const response = await fetch(
@@ -156,28 +178,6 @@ export const listUserFilms = async (setter) => {
         setter(movieArr);
         // setWatchlist(tempWatchlist);
         console.log("createMovieObjectArray set watchlist to:", movieArr);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const removeFilm = async (user, removedFilm) => {
-    try {
-        const response = await fetch(
-            `${process.env.REACT_APP_REST_API}watchlist`,
-            {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: {
-                    user: user,
-                    removefilm: removedFilm,
-                },
-            }
-        );
-        const data = response.json();
-        console.log(data);
     } catch (error) {
         console.log(error);
     }

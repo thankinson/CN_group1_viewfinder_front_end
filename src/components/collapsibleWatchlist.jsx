@@ -5,7 +5,7 @@ import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
-import { addFilm, listUserFilms } from "../utils";
+import { addFilm, removeFilm, listUserFilms } from "../utils";
 
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -23,8 +23,21 @@ const StarRating = ({ stars }) =>  {
     
 }
 export const CollapsibleWatchlist = ({ user }) => {
-    const [watchIDs, setWatchIDs] = useState([]);
     const [watchlist, setWatchlist] = useState([]);
+
+    const movieWatchlistAdd = async ( movie ) => {
+        console.log("movieWatchlistAdd", user, movie);
+        // setWatchlist(watchlist.filter((item) => item.id !== movie));
+        setWatchlist([...watchlist, movie]);
+        await addFilm(user, movie);
+    }
+
+    const movieWatchlistRemove = async ( movie ) => {
+        console.log("movieWatchlistRemove", user, movie);
+        setWatchlist(watchlist.filter((item) => item.id !== movie));
+        // setWatchlist([...watchlist, movie]);
+        await removeFilm(user, movie);
+    }
             
     useEffect(
         async () => {
@@ -43,9 +56,19 @@ export const CollapsibleWatchlist = ({ user }) => {
                             <Logo src={TriangleFill} />
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv
-                            // onClick={(movie) => MovieWatchlistAdd(movie)}
-                        >
+                        <MovieItemElementDiv onClick={
+                            () => {
+                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                        console.log("Not found on watchlist. Adding.")
+                                        movieWatchlistAdd(movie.id);
+                                    } else {
+                                        console.log("Found on watchlist. Removing.")
+                                        movieWatchlistRemove(movie.id);
+                                    }
+                                    // setRemoveFlag(!removeFlag);
+                                }
+
+                            }>
                             <Logo src={Star} />
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
@@ -71,9 +94,19 @@ export const CollapsibleWatchlist = ({ user }) => {
                             <Logo src={TriangleFill} />
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
-                        <MovieItemElementDiv
-                            // onClick={() => MovieWatchlistAdd(movie)}
-                        >
+                        <MovieItemElementDiv onClick={
+                            () => {
+                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    console.log("Not found on watchlist. Adding.")
+                                    movieWatchlistAdd(movie.id);
+                                } else {
+                                    console.log("Found on watchlist. Removing.")
+                                    movieWatchlistRemove(movie.id);
+                                }
+                                // setRemoveFlag(!removeFlag);
+                            }
+
+                        }>
                             <Logo src={Star} />
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>

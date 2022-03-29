@@ -4,11 +4,12 @@ import "../globalstyles/styles.css";
 import styled from "styled-components";
 import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
-import Triangle from "../assets/triangle1.svg";
-import TriangleFill from "../assets/triangle-fill1.svg";
-import { addFilm, listUserFilms } from "../utils";
-import "../styles/collapsibleMovie.css";
-import Flags from "country-flag-icons/react/3x2";
+import Triangle from  "../assets/triangle1.svg";
+import TriangleFill from  "../assets/triangle-fill1.svg";
+import { addFilm, removeFilm, listUserFilms } from "../utils";
+import '../styles/collapsibleMovie.css'
+import Flags from 'country-flag-icons/react/3x2'
+
 
 //        <img src={Flixy} className="App-logo" alt="logo" />
 
@@ -28,9 +29,14 @@ const StarRating = ({ stars }) => {
     );
 };
 
-export let movieWatchlistArray = [];
+export const CollapsibleSearch = ( { user } ) => {
+    const [watchlist, setWatchlist] = useState([]);
+            
+    useEffect(
+        async () => {
+            await listUserFilms(setWatchlist);
+    }, []);
 
-export const CollapsibleSearch = ({ user }) => {
     function openTab(e, serviceName) {
         // declare vars
         let i;
@@ -62,13 +68,17 @@ export const CollapsibleSearch = ({ user }) => {
 
     const movieWatchlistAdd = async (movie) => {
         console.log("movieWatchlistAdd", user, movie);
+        // setWatchlist(watchlist.filter((item) => item.id !== movie));
+        setWatchlist([...watchlist, movie]);
         await addFilm(user, movie);
     };
 
     const movieWatchlistRemove = async (movie) => {
         console.log("movieWatchlistRemove", user, movie);
-        // await removeFilm(user, movie);
-    };
+        setWatchlist(watchlist.filter((item) => item.id !== movie));
+        // setWatchlist([...watchlist, movie]);
+        await removeFilm(user, movie);
+    }
 
     const SearchMovie = async (e, searchString) => {
         e.preventDefault();
@@ -156,28 +166,24 @@ export const CollapsibleSearch = ({ user }) => {
             return (
                 <MovieItemDiv>
                     <MovieItemTopDiv>
-                        <MovieItemElementDiv
-                            onClick={() => setExpanded(!expanded)}
-                        >
-                            <Logo src={TriangleFill} />
-                        </MovieItemElementDiv>
-                        <MovieItemTitle>
-                            {movie.title} (
-                            {movie.release_date &&
-                                movie.release_date.substring(0, 4)}
-                            )
-                        </MovieItemTitle>
-                        <MovieItemElementDiv
-                            onClick={() => {
-                                if (removeFlag) {
-                                    movieWatchlistRemove(movie.id);
-                                } else {
+                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                        <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
+                        <MovieItemElementDiv onClick={
+                            () => {
+                                console.log(watchlist.map(a => a.id).find(element => element == movie.id));
+                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    console.log("Not found on watchlist. Adding.")
                                     movieWatchlistAdd(movie.id);
+                                } else {
+                                    console.log("Found on watchlist. Removing.")
+                                    movieWatchlistRemove(movie.id);
                                 }
                                 // setRemoveFlag(!removeFlag);
-                            }}
-                        >
-                            <Logo src={Star} />
+                            }
+
+                        }>
+
+                            <Logo src={Star}/>
                             {/* {() => {    if (removeFlag)
                                         {
                                             <Logo src={Star}/>
@@ -285,28 +291,23 @@ export const CollapsibleSearch = ({ user }) => {
             return (
                 <MovieItemDiv>
                     <MovieItemTopDiv>
-                        <MovieItemElementDiv
-                            onClick={() => setExpanded(!expanded)}
-                        >
-                            <Logo src={TriangleFill} />
-                        </MovieItemElementDiv>
-                        <MovieItemTitle>
-                            {movie.title} (
-                            {movie.release_date &&
-                                movie.release_date.substring(0, 4)}
-                            )
-                        </MovieItemTitle>
-                        <MovieItemElementDiv
-                            onClick={() => {
-                                if (removeFlag) {
-                                    movieWatchlistRemove(movie.id);
-                                } else {
+                        <MovieItemElementDiv onClick={() => setExpanded(!expanded)}><Logo src={TriangleFill}/></MovieItemElementDiv>
+                        <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
+                        <MovieItemElementDiv onClick={
+                            () => {
+                                console.log(watchlist.map(a => a.id).find(element => element == movie.id));
+                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    console.log("Not found on watchlist. Adding.")
                                     movieWatchlistAdd(movie.id);
+                                } else {
+                                    console.log("Found on watchlist. Removing.")
+                                    movieWatchlistRemove(movie.id);
                                 }
                                 // setRemoveFlag(!removeFlag);
-                            }}
-                        >
-                            <Logo src={Star} />
+                            }
+
+                        }>
+                            <Logo src={Star}/>
                             {/* {() => {    if (removeFlag)
                                         {
                                             <Logo src={Star}/>
