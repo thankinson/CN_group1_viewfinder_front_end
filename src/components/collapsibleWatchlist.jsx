@@ -27,11 +27,15 @@ export const CollapsibleWatchlist = ({ user }) => {
 
     const movieWatchlistAdd = async ( movie ) => {
         console.log("movieWatchlistAdd", user, movie);
+        // setWatchlist(watchlist.filter((item) => item.id !== movie));
+        setWatchlist([...watchlist, movie]);
         await addFilm(user, movie);
     }
 
     const movieWatchlistRemove = async ( movie ) => {
         console.log("movieWatchlistRemove", user, movie);
+        setWatchlist(watchlist.filter((item) => item.id !== movie));
+        // setWatchlist([...watchlist, movie]);
         await removeFilm(user, movie);
     }
             
@@ -53,11 +57,7 @@ export const CollapsibleWatchlist = ({ user }) => {
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
                         <MovieItemElementDiv onClick={
-                            () => { 
-                                    console.log(movie);
-                                    console.log(watchlist.map(a => a.id));
-                                    console.log(watchlist.map(a => a.id).find(element => element == movie.id));
-
+                            () => {
                                     if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                         console.log("Not found on watchlist. Adding.")
                                         movieWatchlistAdd(movie.id);
@@ -95,22 +95,18 @@ export const CollapsibleWatchlist = ({ user }) => {
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title}</MovieItemTitle>
                         <MovieItemElementDiv onClick={
-                            () => { 
-                                    console.log(movie);
-                                    console.log(watchlist.map(a => a.id));
-                                    console.log(watchlist.map(a => a.id).find(element => element == movie.id));
-
-                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
-                                        console.log("Not found on watchlist. Adding.")
-                                        movieWatchlistAdd(movie.id);
-                                    } else {
-                                        console.log("Found on watchlist. Removing.")
-                                        movieWatchlistRemove(movie.id);
-                                    }
-                                    // setRemoveFlag(!removeFlag);
+                            () => {
+                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    console.log("Not found on watchlist. Adding.")
+                                    movieWatchlistAdd(movie.id);
+                                } else {
+                                    console.log("Found on watchlist. Removing.")
+                                    movieWatchlistRemove(movie.id);
                                 }
+                                // setRemoveFlag(!removeFlag);
+                            }
 
-                            }>
+                        }>
                             <Logo src={Star} />
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
