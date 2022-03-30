@@ -126,15 +126,15 @@ export const CollapsibleSearch = ( { user } ) => {
                         for (let item of val.flatrate) {
                             // now we can return the service name
 
-                            if (item.provider_name == "Netflix") {
+                            if (item.provider_name === "Netflix") {
                                 // console.log('netflix ' + country)
                                 movieJSON.results[i].netflix.push(country);
                             } else if (
-                                item.provider_name == "Amazon Prime Video"
+                                item.provider_name === "Amazon Prime Video"
                             ) {
                                 // console.log('prime ' + country)
                                 movieJSON.results[i].amazonPrime.push(country);
-                            } else if (item.provider_name == "Disney Plus") {
+                            } else if (item.provider_name === "Disney Plus") {
                                 // console.log('disney+ ' + country)
                                 movieJSON.results[i].disneyPlus.push(country);
                             } else {
@@ -160,7 +160,7 @@ export const CollapsibleSearch = ( { user } ) => {
         const [expanded, setExpanded] = useState(false);
 
         const LogoEffect = ( {logo1, logo2} ) => {
-            if ( watchlist.map(a => a.id).find(element => element == movie.id) == undefined ) {
+            if ( watchlist.map(a => a.id).find(element => element === movie.id) === undefined ) {
                 return ( <Logo src={logo1}/>)
             }
             else {
@@ -177,8 +177,8 @@ export const CollapsibleSearch = ( { user } ) => {
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => {
-                                console.log(watchlist.map(a => a.id).find(element => element == movie.id));
-                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                console.log(watchlist.map(a => a.id).find(element => element === movie.id));
+                                if (watchlist.map(a => a.id).find(element => element === movie.id) === undefined) {
                                     console.log("Not found on watchlist. Adding.")
                                     movieWatchlistAdd(movie);
                                 } else {
@@ -296,8 +296,8 @@ export const CollapsibleSearch = ( { user } ) => {
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => {
-                                console.log(watchlist.map(a => a.id).find(element => element == movie.id));
-                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                console.log(watchlist.map(a => a.id).find(element => element === movie.id));
+                                if (watchlist.map(a => a.id).find(element => element === movie.id) === undefined) {
                                     console.log("Not found on watchlist. Adding.")
                                     movieWatchlistAdd(movie);
                                 } else {
