@@ -73,14 +73,14 @@ export const CollapsibleSearch = ( { user } ) => {
         console.log(newWatchlist);
         setWatchlist(newWatchlist);
         // setWatchlist(watchlist.push(movie));
-        await addFilm(user, movie);
+        await addFilm(user, movie.id);
     };
 
     const movieWatchlistRemove = async (movie) => {
         console.log("movieWatchlistRemove", user, movie);
-        setWatchlist(watchlist.filter((item) => item.id !== movie));
+        setWatchlist(watchlist.filter((item) => item.id !== movie.id));
         // setWatchlist([...watchlist, movie]);
-        await removeFilm(user, movie);
+        await removeFilm(user, movie.id);
     }
 
     const SearchMovie = async (e, searchString) => {
@@ -184,10 +184,10 @@ export const CollapsibleSearch = ( { user } ) => {
                                 console.log(watchlist.map(a => a.id).find(element => element == movie.id));
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
-                                    movieWatchlistAdd(movie.id);
+                                    movieWatchlistAdd(movie);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
-                                    movieWatchlistRemove(movie.id);
+                                    movieWatchlistRemove(movie);
                                 }
                             }
 
@@ -303,10 +303,10 @@ export const CollapsibleSearch = ( { user } ) => {
                                 console.log(watchlist.map(a => a.id).find(element => element == movie.id));
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
-                                    movieWatchlistAdd(movie.id);
+                                    movieWatchlistAdd(movie);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
-                                    movieWatchlistRemove(movie.id);
+                                    movieWatchlistRemove(movie);
                                 }
                             }
 

@@ -64,7 +64,7 @@
   }
 
 
-  
+
   .temporary-container {
     /* div */
     display: flex;
@@ -84,7 +84,7 @@
     align-items: center;
   }
 
-  .movie-search-div {
+  .movie-search-form {
     /* form */
     display: flex;
     border: green 4px solid;
