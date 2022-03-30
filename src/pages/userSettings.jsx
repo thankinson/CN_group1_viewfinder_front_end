@@ -4,7 +4,7 @@ import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
 import { Navigate } from "react-router-dom";
 import {  tokenLogin } from "../utils/index";
-// import "../styles/settings.css";
+import "../styles/settings.css";
 
 export const UserSettings = ({ user, setUser }) => {
     const [passUpdate, setPassUpdate] = useState();
@@ -33,27 +33,29 @@ export const UserSettings = ({ user, setUser }) => {
     return (
         <>
             <Navbar setUser={setUser}/>
-            <div id="settings-greeting">
-                <h2>Welcome {user}!</h2>
-                <p>Would you like to change your password?</p>
-            </div>
-            <form id="settings-change-password" onSubmit={submitHandler}>
-                <input
-                    type="password"
-                    placeholder="password"
-                    onChange={(e) => setPassUpdate(e.target.value)}
-                />
-                <button type="submit">Change Password</button>
-            </form>
-            <div id="settings-delete-user">
-                <h2>Delete My Account</h2>
-                <p>
-                    Are you <em>sure</em> you want to delete your account?
-                </p>
-                <button onClick={() => deleteUser(user)}>Yes, I'm sure</button>
-                <p>
-                    <em>This action is permanent!</em>
-                </p>
+            <div className="settings-container">
+                <div id="settings-greeting">
+                    <h2>Welcome {user}!</h2>
+                    <p>Would you like to change your password?</p>
+                </div>
+                <form id="settings-change-password" onSubmit={submitHandler}>
+                    <input
+                        type="password"
+                        placeholder="password"
+                        onChange={(e) => setPassUpdate(e.target.value)}
+                    />
+                    <button type="submit">Change Password</button>
+                </form>
+                <div id="settings-delete-user">
+                    <h2>Delete My Account</h2>
+                    <p>
+                        Are you <em>sure</em> you want to delete your account?
+                    </p>
+                    <button id="delete" onClick={() => deleteUser(user)}>Yes, I'm sure</button>
+                    <p>
+                        <em>This action is permanent!</em>
+                    </p>
+                </div>
             </div>
             <Footer />
         </>
