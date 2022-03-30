@@ -79,7 +79,7 @@ export const CollapsibleWatchlist = ({ user }) => {
         const [expanded, setExpanded] = useState(false);
         if (expanded) {
             return (
-                <MovieItemDiv>
+                <div className="movie-item-div">
                     <MovieItemTopDiv>
                         <MovieItemElementDiv
                             onClick={() => setExpanded(!expanded)}
@@ -192,11 +192,11 @@ export const CollapsibleWatchlist = ({ user }) => {
                             </div>
                         </div>
                     </MovieItemDetailsDiv>
-                </MovieItemDiv>
+                </div>
             );
         } else {
             return (
-                <MovieItemDiv>
+                <div className="movie-item-div">
                     <MovieItemTopDiv>
                         <MovieItemElementDiv
                             onClick={() => setExpanded(!expanded)}
@@ -220,7 +220,7 @@ export const CollapsibleWatchlist = ({ user }) => {
                             <Logo src={Star} />
                         </MovieItemElementDiv>
                     </MovieItemTopDiv>
-                </MovieItemDiv>
+                </div>
             );
         }
     };
