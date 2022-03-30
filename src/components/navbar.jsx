@@ -60,6 +60,7 @@ export const Navbar = ({ setUser }) => {
                             <div className="line" />
                             <div className="line" />
                             <div className="line" />
+                            <div id="buffer"></div>
                         </div>
                         {showBurger &&
                             <div className="burger-item-wrapper">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Star from "../assets/star-fill.svg";
-import TriangleFill from  "../assets/triangle-fill1.svg";
+import TriangleFill from  "../assets/black-triangle.svg";
 import { addFilm, removeFilm, listUserFilms } from "../utils";
 
 const StarRating = ({ stars }) =>  {
@@ -34,7 +34,7 @@ export const CollapsibleWatchlist = ({ user }) => {
         await removeFilm(user, movie);
     }
         
-    let copy = []
+    // let copy = []
 
     // On page load, fetch user watchlist from db
     // This function will then fetch region data from our API
@@ -78,12 +78,12 @@ export const CollapsibleWatchlist = ({ user }) => {
                         <MovieItemElementDiv
                             onClick={() => setExpanded(!expanded)}
                         >
-                            <Logo src={TriangleFill} />
+                            <SmallLogo src={TriangleFill} />
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => {
-                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    if (watchlist.map(a => a.id).find(element => element === movie.id) === undefined) {
                                         console.log("Not found on watchlist. Adding.")
                                         movieWatchlistAdd(movie.id);
                                     } else {
@@ -195,12 +195,12 @@ export const CollapsibleWatchlist = ({ user }) => {
                         <MovieItemElementDiv
                             onClick={() => setExpanded(!expanded)}
                         >
-                            <Logo src={TriangleFill} />
+                            <SmallLogo src={TriangleFill} />
                         </MovieItemElementDiv>
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => {
-                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                if (watchlist.map(a => a.id).find(element => element === movie.id) === undefined) {
                                     console.log("Not found on watchlist. Adding.")
                                     movieWatchlistAdd(movie.id);
                                 } else {
@@ -241,22 +241,67 @@ export const CollapsibleWatchlist = ({ user }) => {
     );
 };
 
+
 export const TemporaryContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border: black 4px dashed;
-    background-color: lightblue;
+    // border: var(--color-light) 4px dashed;
+    // background-color: var(--color-background-main);
     padding: 2px;
 `;
 const MainMovieDiv = styled.div`
-    width:100%;
+    // width: 85%;
     display: flex;
     flex-direction: column;
-    border: red 4px solid;
-    text-align: center;
+    // border: red 4px dashed;
+    align-items: center;
+`;
+
+const MovieItemTopDiv = styled.div`
+    display: flex;
+    flex: 1;
+    // border: pink 4px solid;
+    margin: 8px;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+    // background: cyan;
+    background-color: var(--color-light);
+    // width: 80%;
+`;
+
+const MovieItemDiv = styled.div`
+    display: flex;
+    // border: blue 4px solid;
+    margin: 0px;
+    min-width: 70vw;
+    max-width: 70vw;
+    // width: 80%;
+    flex-direction: column;
+    align-items: center;
     
 `;
+
+const MovieSearchForm = styled.form`
+    display: flex;
+    // border: green 4px solid;
+    background-color: var(--color-light);
+    margin: 4px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    width: 70vw;
+    // flex:1;
+`;
+const MovieSearchInput = styled.input`
+    width: 45%;
+    height: 2em;
+    margin: 1em;
+`;
+
 const Logo = styled.img`
     height: 100%;
     width: 100%;
@@ -267,62 +312,57 @@ const SmallLogo = styled.img`
     width: 1em;
 `;
 
-
-const MovieItemDiv = styled.div`
-    display: flex;
-    // border: blue 4px solid;
-    margin: 2px;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    background-color: cyan;
-`;
-
-const MovieItemTopDiv = styled.div`
-    display: flex;
-    border: pink 4px solid;
-    margin: 2px;
-    flex-direction: row;
-    align-items: center;
-    height: 3em;
-    background: cyan;
-    width: 80%;
-`;
-
 const StarDiv = styled.div`
     display: flex;
     flex-direction: row;
+    margin: 3px;
+    margin-top: 4px;
 `;
 
 const MovieItemElementDiv = styled.div`
-    // display: flex;
-    // justify-content: stretch;
-    // align-items: stretch;
-    border: orange 4px solid;
-    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: red 4px solid;
+    margin: 8px;
     height: 2em;
     width: 2em;
-    // background-color: cyan;
 `;
+
 const MovieItemDetailsDiv = styled.div`
     flex-direction: row;
-    border: grey 4px solid;
+    // border: var(--color-light) 4px solid;
     margin: 2px;
+
     flex: 1;
     width: 100%;
+        // background-color: var(--color-light);
+
     // height: 2em;
     // width: 2em;
 `;
 
 const MovieItemDetailsPoster = styled.img`
-    max-height: 300px;
+    max-width: 300px;
+    // margin: 4px;
 `;
+
 const MovieItemPlotDiv = styled.div`
-    border: purple 4px solid;
-    margin: 2px;
+    // border: var(--color-background-main) 4px solid;
+    background-color: var(--color-light);
+    flex:1;
+    // max-width: 70%
+    min-width: 70%;
+    margin: 4px;
+    padding: 1em;
 `;
+
 const MovieItemTitle = styled.p`
     flex: 1;
     text-align: left;
     margin-left: 2em;
+    // background-color: var(--color-light);
+
 `;
+
+
