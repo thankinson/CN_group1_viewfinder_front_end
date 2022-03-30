@@ -1,25 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 .nav-container {
     display: flex;
     padding: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     height: 10vh;
     justify-content: space-between;
 }
 
+/* Flixy with yellow (need to remove shadow hover)*/
+/* Flixys background*/
+.nav-logo {
+    background-color: #FFFAD0;
+    height: 100px;
+    padding: 2px;
+    border-radius: 10px;
+}
 .App-logo {
-    max-height: 100px;
-    padding: 5px;
+    max-height: 95px;
+    padding: 2px;
 }
 
+/* Flixy with banner
+.nav-logo{
+    max-height: 95%;
+    border: white dotted 4px;
+}
+.App-logo{
+    display: flex;
+    filter: brightness(92%);
+    height: 95px;
+    border: black solid 2px;
+    background-size: 20px 20px;
+    background-image:  repeating-linear-gradient(
+        0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
+}  */
+
 .App-logo:hover {
-    filter: drop-shadow(1px 1px 1px white );
+    filter: drop-shadow(10px 10px 10px white );
 }
 
 .nav-list {
     width: 60%;
-    height: 100%;
+    height: 99%;
     display: flex;
     list-style: none;
     margin: 0;
@@ -60,7 +82,6 @@
 }
 
 .active {
-    /* color: rgb(213, 228, 77); */
     filter:brightness(120%)
 }
 
@@ -74,13 +95,11 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border: rgb(20, 20, 18) solid 2px;
+        border: rgb(20, 20, 18) solid 1px;
         filter: brightness(92%);
         min-width: fit-content;
         width:25%;
-    
-        background-color: #eb2c13;
-        
+        background-color: #eb2c13;        
         background-size: 20px 20px;
         background-image:  repeating-linear-gradient(
             0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
@@ -89,9 +108,44 @@
 
 /* Small screen styles */
 @media all and (max-width: 820px) {
+    
+    .navbar {
+        /* border: white dotted 4px; */
+    }
+
+    .nav-container {
+        border: rgb(20, 20, 18) solid 2px;
+
+        display: flex;
+        box-shadow: 0 0 8px white;
+        filter: brightness(92%);
+        background-color: #FFFAD0;  
+        /* background-size: 20px 20px;
+        background-image:  repeating-linear-gradient(
+            0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
+        animation: flicker 10s linear 1s forwards infinite;     */
+    }
+
+    @keyframes flicker {
+        0%{filter:brightness(1);}
+        8%{filter:brightness(1);}
+        8.3%{filter:brightness(0.8);}
+        8.6%{filter:brightness(1);}
+        8.8%{filter:brightness(0.8);}
+        9%{filter:brightness(1);}
+        70%{filter:brightness(1);}
+        70.5%{filter:brightness(0.9);}
+        71%{filter:brightness(1);}
+        100%{filter: brightness(1);}
+    }
+
     .nav-list {
-        border:rgb(133, 70, 117) solid 6px;
+        /* border:rgb(133, 70, 117) solid 6px; */
         display: none;
+    }
+
+    .App-logo:hover {
+        filter: drop-shadow(10px 10px 10px rgb(183, 202, 236) );
     }
 
     #hamburger-wrapper {
@@ -103,33 +157,39 @@
         width: 50px;
         height: 50px;
         align-self: flex-end;
-        margin-bottom: 5px;
+        margin: 20px;
+    }
+
+    .burger:hover {
+        filter: drop-shadow(5px 5px 5px rgb(161, 187, 235) );
     }
 
     .line {
         height: 5px;
-        background-color: white;
+        background-color: rgb(0, 0, 0);
         margin-top: 10px;
         border-radius: 20px;
         box-shadow: 2px 2px grey
     }
     
     .burger-item-wrapper {
+        background-color: black;
         border: white dotted 4px;
         box-shadow: 0 0 8px white;
-        padding: 2px;
     }
 
     .nav-item {
         display: flex;
         justify-content: center;
-        border: rgb(20, 20, 18) solid 2px;
+        border: rgb(20, 20, 18) solid 1px;
         filter: brightness(92%);
-
         padding: 10px;
-
         background-size: 20px 20px;
         background-image:  repeating-linear-gradient(
             0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
+    }
+
+    #buffer {
+        
     }
 }
