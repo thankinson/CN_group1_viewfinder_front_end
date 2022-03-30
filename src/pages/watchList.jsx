@@ -9,7 +9,6 @@ import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { tokenLogin } from "../utils/index";
 
-
 export const WatchList = ({ user, setUser  }) => {
 
     //Changes document title on load
