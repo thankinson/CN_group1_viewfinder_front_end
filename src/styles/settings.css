@@ -1,0 +1,45 @@
+/* large screen styles  */
+@media all and (min-width: 820px) {
+
+    body {
+        color: #fffad0;
+    }
+    #delete {
+        background-color: #e71f11;
+    }
+}
+
+@media all and (max-width: 820px) {
+
+    body {
+        color: #fffad0;
+    }
+
+    .nav-container {
+        background-color: #fffad0;
+    }
+
+    /* Pass input box */
+    #passinput {
+        width: 94vw;
+        height: 30px;
+    }
+
+    /* Change pass button */
+    #submit {
+        background-color: #fffad0;
+        width: 95vw;
+        height: 30px;
+    }
+
+    /* Delete button */
+    #delete {
+        background-color: #e71f11;
+        width: 95vw;
+        height: 30px;
+    }
+    #footerCon {
+        display: none;
+    }
+
+}

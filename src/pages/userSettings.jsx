@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { updatePass, deleteUser } from "../utils";
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
 import { Navigate } from "react-router-dom";
 import {  tokenLogin } from "../utils/index";
+// import "../styles/settings.css";
 
 export const UserSettings = ({ user, setUser }) => {
     const [passUpdate, setPassUpdate] = useState();
