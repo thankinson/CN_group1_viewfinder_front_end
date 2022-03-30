@@ -1,6 +1,6 @@
 // nav bar
 
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { logout } from "../utils/index";
 import "../styles/navbar.css";
