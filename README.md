@@ -1,4 +1,4 @@
-<h1 align="center">Viewfinder
+<h1 align="center">Viewfinder - Front End
 <br><br>
 <img src="https://view-finder.netlify.app/static/media/Flixy.e9062796c0560f6d8471d05f97eb9f95.svg" alt="viewfinder logo" title="viewfinder logo" width="400">
 <br>
@@ -59,7 +59,6 @@ To Visit App:
 
 The packages that are used in this app are:
 
-- React
 - country-flag-icons: ^1.4.25,
 - react: ^17.0.2,
 - react-dom: ^17.0.2,
