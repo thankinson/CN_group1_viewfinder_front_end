@@ -16,9 +16,6 @@
   height: 300px;
 }
 
-
-
-
  .tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -65,3 +62,121 @@
   .region-flag {
     height: 12px;
   }
+
+
+
+  .temporary-container {
+    /* div */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: black 4px dashed;
+    /* background-color: lightblue; */
+    padding: 2px;
+  }
+
+  .main-movie-div {
+    /* div */
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    border: red 4px solid;
+    align-items: center;
+  }
+
+  .movie-search-form {
+    /* form */
+    display: flex;
+    border: green 4px solid;
+    margin: 2px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    /* flex: 1; */
+  }
+
+  .movie-search-input {
+    /* input */
+    width: 45%;
+    height: 2em;
+    margin: 1em;
+  }
+
+  .logo {
+    /* img */
+    height: 100%;
+    width: 100%;
+  }
+  .small-logo {
+    /* img */
+    height: 1em;
+    width: 1em;
+  }
+
+  .movie-item-div {
+    /* div */
+    display: flex;
+    border: blue 4px solid;
+    margin: 2px;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    background-color: cyan;
+  }
+
+  .movie-item-top-div {
+    /* div */
+    display: flex;
+    border: pink 4px solid;
+    margin: 2px;
+    flex-direction: row;
+    align-items: center;
+    height: 3em;
+    background: cyan;
+    width: 80%;
+
+  }
+
+  .star-div {
+    /* div */
+    display: flex;
+    flex-direction: row;
+  }
+
+  .movie-item-element-div {
+    /* div */
+    border: orange 4px solid;
+    margin: 2px;
+    height: 2em;
+    width: 2em;
+  }
+
+  .movie-item-details-div {
+    /* div */
+    flex-direction: row;
+    border: grey 4px solid;
+    margin: 2px;
+    flex: 1;
+    width: 100%;
+  }
+
+  .movie-item-details-poster {
+    /* img */
+    max-height: 300px;
+  }
+
+  .movie-item-plot-div {
+    /* div */
+    border: purple 4px solid;
+    margin: 2px;
+  }
+
+  .movie-item-title {
+    /* p */
+    flex: 1;
+    text-align: left;
+    margin-left: 2em;
+
+  }
+

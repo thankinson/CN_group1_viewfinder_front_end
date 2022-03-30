@@ -69,15 +69,18 @@ export const CollapsibleSearch = ( { user } ) => {
     const movieWatchlistAdd = async (movie) => {
         console.log("movieWatchlistAdd", user, movie);
         // setWatchlist(watchlist.filter((item) => item.id !== movie));
-        setWatchlist([...watchlist, movie]);
-        await addFilm(user, movie);
+        let newWatchlist = [...watchlist, movie];
+        console.log(newWatchlist);
+        setWatchlist(newWatchlist);
+        // setWatchlist(watchlist.push(movie));
+        await addFilm(user, movie.id);
     };
 
     const movieWatchlistRemove = async (movie) => {
         console.log("movieWatchlistRemove", user, movie);
-        setWatchlist(watchlist.filter((item) => item.id !== movie));
+        setWatchlist(watchlist.filter((item) => item.id !== movie.id));
         // setWatchlist([...watchlist, movie]);
-        await removeFilm(user, movie);
+        await removeFilm(user, movie.id);
     }
 
     const SearchMovie = async (e, searchString) => {
@@ -159,7 +162,6 @@ export const CollapsibleSearch = ( { user } ) => {
 
     const MovieItem = ({ movie }) => {
         const [expanded, setExpanded] = useState(false);
-        const [removeFlag, setRemoveFlag] = useState(false);
 
         const LogoEffect = ( {logo1, logo2} ) => {
             if ( watchlist.map(a => a.id).find(element => element == movie.id) == undefined ) {
@@ -182,16 +184,11 @@ export const CollapsibleSearch = ( { user } ) => {
                                 console.log(watchlist.map(a => a.id).find(element => element == movie.id));
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
-                                    // console.log("removeFlag", removeFlag);
-                                    // // setRemoveFlag(true);
-                                    // console.log("removeFlag", removeFlag);
-                                    movieWatchlistAdd(movie.id);
+                                    movieWatchlistAdd(movie);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
-                                    // setRemoveFlag(false);
-                                    movieWatchlistRemove(movie.id);
+                                    movieWatchlistRemove(movie);
                                 }
-                                // setRemoveFlag(!removeFlag);
                             }
 
                         }>
@@ -306,15 +303,11 @@ export const CollapsibleSearch = ( { user } ) => {
                                 console.log(watchlist.map(a => a.id).find(element => element == movie.id));
                                 if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
                                     console.log("Not found on watchlist. Adding.")
-                                    console.log("removeFlag", removeFlag);
-                                    setRemoveFlag(true);
-                                    console.log("removeFlag", removeFlag);
-                                    movieWatchlistAdd(movie.id);
+                                    movieWatchlistAdd(movie);
                                 } else {
                                     console.log("Found on watchlist. Removing.")
-                                    movieWatchlistRemove(movie.id);
+                                    movieWatchlistRemove(movie);
                                 }
-                                // setRemoveFlag(!removeFlag);
                             }
 
                         }>
@@ -384,6 +377,7 @@ const SmallLogo = styled.img`
     height: 1em;
     width: 1em;
 `;
+
 // const MovieListDiv = styled.div`
 //     border: black 4px solid;
 //     margin: 2px;
@@ -427,6 +421,7 @@ const MovieItemElementDiv = styled.div`
     width: 2em;
     // background-color: cyan;
 `;
+
 const MovieItemDetailsDiv = styled.div`
     flex-direction: row;
     border: grey 4px solid;
@@ -440,10 +435,12 @@ const MovieItemDetailsDiv = styled.div`
 const MovieItemDetailsPoster = styled.img`
     max-height: 300px;
 `;
+
 const MovieItemPlotDiv = styled.div`
     border: purple 4px solid;
     margin: 2px;
 `;
+
 const MovieItemTitle = styled.p`
     flex: 1;
     text-align: left;
