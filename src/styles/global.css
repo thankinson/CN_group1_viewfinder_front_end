@@ -1,0 +1,14 @@
+/* Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend&family=Lexend+Deca&display=swap");
+
+/* Global Vars */
+:root {
+  /* Font Families - use font-family: var(--marquee-font) etc*/
+  --marquee-font: "Bebas Neue", impact, sans-serif;
+  --main-font: "Lexend", arial, sans-serif;
+  --accent-font: "Lexend Deca", arial, sans-serif;
+
+  /* Colours - use color: var(--background-color) etc */
+  --color-background-main: #23233d;
+  --color-light: #fffad0;
+}
