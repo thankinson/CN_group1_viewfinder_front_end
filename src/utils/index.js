@@ -149,6 +149,12 @@ export const removeFilm = async (user, removedFilm) => {
     }
 };
 
+/*  This function grabs the IDs from a User's watchlist array, 
+    then gets the film objects from the API, then the region 
+    objects, then extracts the flatrate info from the region objects,
+    then updates the movie objects with this data, and finally
+    returns the updated object array.*/
+
 export const listUserFilms = async (setter) => {
     try {
         const response = await fetch(
@@ -174,6 +180,53 @@ export const listUserFilms = async (setter) => {
                 movieArr.push(movieJSON);
             } catch (error) {
                 console.log(error);
+            }
+        }
+        for (let i=0; i<movieArr.length; i++) {
+            movieArr[i].netflix = [];
+            movieArr[i].amazonPrime = [];
+            movieArr[i].disneyPlus = [];
+        }
+
+        const regionObjects = [];
+
+        // Here, we want to query for streaming regions using each ID
+        // Loop thru returned films
+        for (let i = 0; i < movieArr.length; i++) {
+            // Fetch region data using id number 'i' from returned films
+            const regionResponse = await fetch(
+                `https://api.themoviedb.org/3/movie/${movieArr[i].id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`
+            );
+            // JSONify the data
+            const regionJSON = await regionResponse.json();
+            // Push to array of region objects
+            regionObjects.push(regionJSON);
+        }
+
+        // The 'flatrate' key we are interested in is tucked quite far into each region object
+        // Loop thru all of the region objects returned
+        for (let i = 0; i < regionObjects.length; i++) {
+            // for each key-val pair in the array of region objects
+            for (const [country, val] of Object.entries(
+                regionObjects[i].results
+            )) {
+                // if the object has a flatrate array
+                if (val.flatrate) {
+                    // check each element of flatrate array
+                    for (let item of val.flatrate) {
+                        // now we can return regions based on service name
+                        if (item.provider_name == "Netflix") {
+                            // console.log('netflix ' + country)
+                            movieArr[i].netflix.push(country);
+                        } else if (item.provider_name == "Amazon Prime Video") {
+                            // console.log('prime ' + country)
+                            movieArr[i].amazonPrime.push(country);
+                        } else if (item.provider_name == "Disney Plus") {
+                            // console.log('disney+ ' + country)
+                            movieArr[i].disneyPlus.push(country);
+                        } 
+                    }
+                }
             }
         }
         setter(movieArr);
