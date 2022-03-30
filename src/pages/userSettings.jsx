@@ -30,7 +30,7 @@ export const UserSettings = ({ user, setUser }) => {
   if (!user && !localStorage.key("myToken")) {
     <Navigate to="/" />;
   } else if (!user && localStorage.key("myToken")) {
-    tokenLogin({ setUser });
+    tokenLogin(setUser);
   }
 
   return (
