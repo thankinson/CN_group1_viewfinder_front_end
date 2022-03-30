@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
-import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, removeFilm, listUserFilms } from "../utils";
 import '../styles/collapsibleMovie.css'

@@ -4,8 +4,6 @@ import Star from "../assets/star-fill.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, removeFilm, listUserFilms } from "../utils";
 
-const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
-
 const StarRating = ({ stars }) =>  {
     let fiveStars = [0,0,0,0,0];
     fiveStars = fiveStars.slice(0, Math.round(stars));
