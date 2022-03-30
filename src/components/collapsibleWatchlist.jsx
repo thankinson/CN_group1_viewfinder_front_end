@@ -6,6 +6,7 @@ import StarFill from "../assets/star-fill.svg";
 import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, removeFilm, listUserFilms } from "../utils";
+import '../styles/collapsibleWatchlist.css'
 
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -275,7 +276,7 @@ const SmallLogo = styled.img`
 
 const MovieItemDiv = styled.div`
     display: flex;
-    // border: blue 4px solid;
+    border: blue 4px solid;
     margin: 2px;
     width: 100%;
     flex-direction: column;
