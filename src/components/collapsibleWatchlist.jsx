@@ -352,7 +352,7 @@ const MovieItemPlotDiv = styled.div`
     background-color: var(--color-light);
     flex:1;
     // max-width: 70%
-    min-width: 70%
+    min-width: 70%;
     margin: 4px;
     padding: 1em;
 `;
