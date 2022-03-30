@@ -35,19 +35,19 @@
         0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
 }  */
 
-/* .App-logo:hover {
+.App-logo:hover {
     filter: drop-shadow(10px 10px 10px white );
-} */
+}
 
 .nav-list {
-    width: 80%;
-    height: 110%;
+    width: 60%;
+    height: 99%;
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    /* border: white dotted 4px; */
-    /* box-shadow: 0 0 8px white; */
+    border: white dotted 4px;
+    box-shadow: 0 0 8px white;
 }
 
 .nav-item:hover {
@@ -95,12 +95,12 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border: rgb(20, 20, 18) solid 5px;
+        border: rgb(20, 20, 18) solid 1px;
         filter: brightness(92%);
         min-width: fit-content;
         width:25%;
         background-color: #eb2c13;        
-        background-size: 20px 35px;
+        background-size: 20px 20px;
         background-image:  repeating-linear-gradient(
             0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
     }
