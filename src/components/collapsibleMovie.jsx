@@ -1,6 +1,6 @@
 // Collapsible Bar
 import { useState, useEffect } from "react";
-import "../globalstyles/styles.css";
+
 import styled from "styled-components";
 import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
