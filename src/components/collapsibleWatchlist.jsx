@@ -34,7 +34,7 @@ export const CollapsibleWatchlist = ({ user }) => {
         await removeFilm(user, movie);
     }
         
-    let copy = []
+    // let copy = []
 
     // On page load, fetch user watchlist from db
     // This function will then fetch region data from our API
@@ -83,7 +83,7 @@ export const CollapsibleWatchlist = ({ user }) => {
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => {
-                                    if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                    if (watchlist.map(a => a.id).find(element => element === movie.id) === undefined) {
                                         console.log("Not found on watchlist. Adding.")
                                         movieWatchlistAdd(movie.id);
                                     } else {
@@ -200,7 +200,7 @@ export const CollapsibleWatchlist = ({ user }) => {
                         <MovieItemTitle>{movie.title} ({movie.release_date && movie.release_date.substring(0,4)})</MovieItemTitle>
                         <MovieItemElementDiv onClick={
                             () => {
-                                if (watchlist.map(a => a.id).find(element => element == movie.id) == undefined) {
+                                if (watchlist.map(a => a.id).find(element => element === movie.id) === undefined) {
                                     console.log("Not found on watchlist. Adding.")
                                     movieWatchlistAdd(movie.id);
                                 } else {
