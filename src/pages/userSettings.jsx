@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { updatePass, deleteUser } from "../utils";
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
@@ -32,8 +31,6 @@ export const UserSettings = ({ user, setUser }) => {
 
     return (
         <>
-            
-  
             <Navbar setUser={setUser}/>
             <div id="settings-greeting">
                 <h2>Welcome {user}!</h2>
@@ -62,8 +59,4 @@ export const UserSettings = ({ user, setUser }) => {
     );
 };
 
-{
-    /* <form id="settings-change-email" onSubmit={(e) => {}}>
-<input type="email" placeholder={userEmail} />
-</form> */
-}
+

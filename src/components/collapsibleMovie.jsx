@@ -1,6 +1,5 @@
 // Collapsible Bar
 import { useState, useEffect } from "react";
-import "../globalstyles/styles.css";
 import styled from "styled-components";
 import Star from "../assets/star.svg";
 import StarFill from "../assets/star-fill.svg";
@@ -8,8 +7,6 @@ import Triangle from  "../assets/triangle1.svg";
 import TriangleFill from  "../assets/triangle-fill1.svg";
 import { addFilm, removeFilm, listUserFilms } from "../utils";
 import '../styles/collapsibleMovie.css'
-import Flags from 'country-flag-icons/react/3x2'
-
 
 //        <img src={Flixy} className="App-logo" alt="logo" />
 
@@ -350,7 +347,7 @@ const MainMovieDiv = styled.div`
     display: flex;
     flex-direction: column;
     border: red 4px solid;
-    alignitems: center;
+    align-items: center;
 `;
 const MovieSearchDiv = styled.form`
     display: flex;
