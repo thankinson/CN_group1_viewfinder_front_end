@@ -2,7 +2,7 @@
 
 .movie-item-details {
   flex-direction: row;
-  border: grey 4px solid;
+  /* border: grey 4px solid; */
   margin: 2px;
   flex: 1;
   width: 100%;
@@ -155,7 +155,7 @@
   .movie-item-details-div {
     /* div */
     flex-direction: row;
-    border: grey 4px solid;
+    /* border: grey 4px solid; */
     margin: 2px;
     flex: 1;
     width: 100%;
@@ -178,5 +178,13 @@
     text-align: left;
     margin-left: 2em;
 
+  }
+
+  .streaming-div {
+    background-color: #fffad0;
+  }
+
+  .tab-content {
+    padding-left: 1.5em;
   }
 
