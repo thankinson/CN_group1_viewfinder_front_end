@@ -476,7 +476,7 @@ const MovieItemDetailsPoster = styled.img`
 const MovieItemPlotDiv = styled.div`
     // border: var(--color-background-main) 4px solid;
     background-color: var(--color-light);
-    // flex:1;
+    flex:1;
     // max-width: 70%
     min-width: 70%
     margin: 4px;
