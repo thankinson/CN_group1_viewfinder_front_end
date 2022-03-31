@@ -24,6 +24,8 @@ export const WatchList = ({ user, setUser }) => {
 
   return (
     <div className="screen-wrapper">
+      {(!user && !localStorage.key('myToken')) && <Navigate to="/"/>}
+      {(!user && localStorage.key('myToken')) && async function(setUser){ await tokenLogin(setUser) } }
       <div className="sub-wrapper">
         <Navbar setUser={setUser} />
         <TemporaryContainer>
