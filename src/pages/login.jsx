@@ -68,7 +68,7 @@ export const Login = ({ user, setUser }) => {
           <h1 id="login-title">ViewFinder</h1>
         </div>
         <div className="blurb-container">
-          <h3>What is ViewFinder?</h3>
+          <h2>What is ViewFinder?</h2>
           <p>
             Ever had trouble finding a film online? ViewFinder searches all the
             streaming sites for you, helping you build a personal watchlist.
