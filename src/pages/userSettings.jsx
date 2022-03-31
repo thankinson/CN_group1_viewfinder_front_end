@@ -37,6 +37,8 @@ export const UserSettings = ({ user, setUser }) => {
     <>
       <Navbar setUser={setUser} />
       <div className="screen-wrapper">
+      {(!user && !localStorage.key('myToken')) && <Navigate to="/"/>}
+      {(!user && localStorage.key('myToken')) && async function(setUser){ await tokenLogin(setUser) } }
         <div className="settings-container">
           <div id="settings-greeting">
             <h2>Welcome {user}!</h2>
