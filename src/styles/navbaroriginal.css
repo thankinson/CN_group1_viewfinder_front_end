@@ -4,7 +4,7 @@
     padding: 10px;
     padding-bottom: 30px;
     height: 10vh;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 /* Flixy with yellow (need to remove shadow hover)*/
@@ -108,10 +108,7 @@
 
 /* Small screen styles */
 @media all and (max-width: 820px) {
-    
-    .navbar {
-        /* border: white dotted 4px; */
-    }
+
 
     .nav-container {
         border: rgb(20, 20, 18) solid 2px;
@@ -189,7 +186,4 @@
             0deg, #c7b98b, #6e6852 2px, rgb(226, 220, 133) 1px, rgb(248, 243, 169));
     }
 
-    #buffer {
-        
-    }
 }
