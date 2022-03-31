@@ -1,0 +1,36 @@
+/* large screen styles  */
+@media all and (min-width: 820px) {
+  .settings-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    justify-items: center;
+    height: 76vh;
+  }
+
+  #settings-greeting {
+    background-color: #fffad0;
+    padding: 10px;
+  }
+
+  #settings-change-password {
+    background-color: #fffad0;
+    margin-top: 5px;
+    padding: 10px;
+  }
+
+  #settings-delete-user {
+    background-color: #fffad0;
+    margin-top: 40px;
+    padding: 10px;
+  }
+
+  #delete {
+    background-color: #e71f11;
+    height: 30px;
+    width: 50%;
+  }
+}

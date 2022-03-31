@@ -1,0 +1,28 @@
+/* footer {
+  width: 90vw;
+  position: relative;
+  bottom: 0;
+} */
+
+footer div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--accent-font);
+}
+
+footer h2 {
+  font-family: var(--accent-font);
+  color: var(--color-light);
+}
+
+footer p {
+  color: var(--color-light);
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  text-decoration-line: underline;
+}

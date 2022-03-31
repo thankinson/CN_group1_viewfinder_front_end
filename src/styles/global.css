@@ -1,0 +1,50 @@
+/* Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend&family=Lexend+Deca&family=Limelight&display=swap");
+
+/* Global Vars */
+:root {
+  /* Font Families - use font-family: var(--marquee-font) etc*/
+  --special-header-font: "Limelight", impact, sans-serif;
+  --marquee-font: "Bebas Neue", impact, sans-serif;
+  --main-font: "Lexend", arial, sans-serif;
+  --accent-font: "Lexend Deca", arial, sans-serif;
+
+  /* Colours - use color: var(--background-color) etc */
+  --color-background-main: #23233d;
+  --color-light: #fffad0;
+}
+
+.root {
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-content: center;
+}
+
+/* .screen-wrapper {
+  height: 100vh;
+} */
+
+.sub-wrapper {
+  min-height: 90vh;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--main-font);
+  background: linear-gradient(#00041a, #20386b);
+  height: 100%;
+  margin-right: 5vw;
+  margin-left: 5vw;
+}
+
+.placeholder-text {
+  color: var(--color-light);
+}
+
+.page-header {
+  text-align: center;
+  color: var(--color-light);
+}
