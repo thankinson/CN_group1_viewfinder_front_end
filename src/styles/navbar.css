@@ -3,7 +3,7 @@
   padding: 10px;
   padding-bottom: 30px;
   height: 10vh;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 /* Flixy with yellow (need to remove shadow hover)*/
