@@ -67,18 +67,7 @@ export const Login = ({ user, setUser }) => {
           />
           <h1 id="login-title">ViewFinder</h1>
         </div>
-        <div className="blurb-container">
-          <h3>What is ViewFinder?</h3>
-          <p>
-            Ever had trouble finding a film online? ViewFinder searches all the
-            streaming sites for you, helping you build a personal watchlist.
-          </p>
-          <p>
-            Whether it's on Netflix, Amazon Prime, Disney Plus or elsewhere,
-            ViewFinder will find it - even in other countries! If you use a VPN
-            to expand your horizons, ViewFinder can help you find it.
-          </p>
-        </div>
+        
         <div className="login-container">
           {user && <Navigate to="/home" />}
           {bool ? (
@@ -133,6 +122,18 @@ export const Login = ({ user, setUser }) => {
             </p>
           )}
         </div>
+        <div className="blurb-container">
+          <h3>What is ViewFinder?</h3>
+          <p>
+            Ever had trouble finding a film online? ViewFinder searches all the
+            streaming sites for you, helping you build a personal watchlist.
+          </p>
+          <p>
+            Whether it's on Netflix, Amazon Prime, Disney Plus or elsewhere,
+            ViewFinder will find it - even in other countries! If you use a VPN
+            to expand your horizons, ViewFinder can help you find it.
+          </p>
+        </div>
         <div id="transition" onClick={handleScroll}>
           <svg
             id="scrolldown-arrow"
@@ -153,6 +154,7 @@ export const Login = ({ user, setUser }) => {
             />
           </svg>
         </div>
+        
       </div>
 
       <Footer />

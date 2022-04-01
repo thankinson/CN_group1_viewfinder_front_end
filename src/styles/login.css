@@ -13,21 +13,25 @@
   padding: 1rem 2rem;
   border-radius: 15px;
   margin: 1rem;
-  max-height: 25vh;
+  max-height: 10vh;
   max-width: 50vw;
   column-gap: 1rem;
-  min-width: 500px;
+  /* min-width: 500px; */
   box-shadow: 2px 5px black;
 }
 
 #login-header h1 {
   font-family: var(--special-header-font);
-  font-size: 3rem;
+  font-size: 5vw;
 }
 
 #login-header img {
   max-height: 20vh;
   max-width: 40%;
+}
+
+#login-flixy {
+  height: 10vh;
 }
 
 .circle {
@@ -38,13 +42,13 @@
 }
 
 .login-container {
-  margin: 2em;
+  margin: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 300px;
+  min-height: 300px;
   width: 500px;
 
   /* border-radius: 10% 10% 10% 10% / 25% 25% 25% 25%; */

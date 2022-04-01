@@ -45,8 +45,8 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  /* border: white dotted 4px; */
-  /* box-shadow: 0 0 8px white; */
+  border: white dotted 4px;
+  box-shadow: 0 0 8px white;
 }
 
 .nav-item:hover {
@@ -133,6 +133,7 @@
   
   .nav-container {
     border: rgb(20, 20, 18) solid 2px;
+    
 
     display: flex;
     box-shadow: 0 0 8px white;
