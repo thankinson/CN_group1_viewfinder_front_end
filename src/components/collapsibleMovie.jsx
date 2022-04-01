@@ -344,7 +344,11 @@ export const CollapsibleSearch = ({ user }) => {
           placeholder="Search for a movie!"
           onChange={(e) => setMovieSearch(e.target.value)}
         />
-        <button onClick={() => SearchMovie(movieSearch)}>Search</button>
+        <button className="search-button" onClick={() => SearchMovie(movieSearch)}>
+        <svg className="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        </button>
       </MovieSearchForm>
       {movieResults &&
         movieResults.map((item, index) => {
@@ -391,13 +395,15 @@ const MovieItemTopDiv = styled.div`
   display: flex;
   flex: 1;
   // border: pink 4px solid;
+  border-radius:25px;
   margin: 8px;
   flex-direction: row;
   align-items: center;
   width: 100%;
   height: 3em;
   // background: cyan;
-  background-color: var(--color-light);
+  // background-color: var(--color-light);
+  background-color: #dbdbdb;
   // width: 80%;
 `;
 
@@ -415,7 +421,7 @@ const MovieItemDiv = styled.div`
 const MovieSearchForm = styled.form`
   display: flex;
   // border: green 4px solid;
-  background-color: var(--color-light);
+  // background-color: var(--color-light);
   margin: 4px;
   flex-direction: row;
   justify-content: center;
@@ -428,6 +434,17 @@ const MovieSearchInput = styled.input`
   width: 45%;
   height: 2em;
   margin: 1em;
+  width: 70%;
+  height: 40px;
+  padding: 4px;
+  padding-left: 15px;
+  border-radius: 25px;
+  border-style: none;
+  background-color: #c7c7c7;
+  &:focus{
+    background-color: white;
+    outline:none;
+  }
 `;
 
 const Logo = styled.img`
@@ -438,6 +455,7 @@ const Logo = styled.img`
 const SmallLogo = styled.img`
   height: 1em;
   width: 1em;
+  cursor: pointer;
 `;
 
 // const MovieListDiv = styled.div`
@@ -452,6 +470,7 @@ const StarDiv = styled.div`
   flex-direction: row;
   margin: 3px;
   margin-top: 4px;
+  cursor: pointer;
 `;
 
 const MovieItemElementDiv = styled.div`
@@ -462,6 +481,7 @@ const MovieItemElementDiv = styled.div`
   margin: 8px;
   height: 2em;
   width: 2em;
+  cursor:pointer;
 `;
 
 const MovieItemDetailsDiv = styled.div`
@@ -484,9 +504,9 @@ const MovieItemDetailsPoster = styled.img`
 
 const MovieItemPlotDiv = styled.div`
   // border: var(--color-background-main) 4px solid;
-  background-color: var(--color-light);
+  background-color: #dbdbdb;
   flex: 1;
-  // max-width: 70%
+  max-width: 70%;
   min-width: 70%;
   // margin: 4px;
   padding: 1em;

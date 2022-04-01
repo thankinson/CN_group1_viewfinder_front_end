@@ -46,11 +46,12 @@ export const UserSettings = ({ user, setUser }) => {
           </div>
           <form id="settings-change-password" onSubmit={submitHandler}>
             <input
+              className="change-password-input"
               type="password"
               placeholder="password"
               onChange={(e) => setPassUpdate(e.target.value)}
             />
-            <button type="submit">Change Password</button>
+            <button id="change-button" type="submit">Change Password</button>
           </form>
           <div id="settings-delete-user">
             <h2>Delete My Account</h2>

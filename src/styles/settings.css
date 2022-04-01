@@ -12,25 +12,66 @@
   }
 
   #settings-greeting {
-    background-color: #fffad0;
+    background-color: #dbdbdb;
     padding: 10px;
+    border-radius: 5px;
   }
 
   #settings-change-password {
-    background-color: #fffad0;
+    background-color: #dbdbdb;
     margin-top: 5px;
     padding: 10px;
+    border-radius: 5px;
+  }
+
+  .change-password-input {
+    padding: 4px;
+    padding-left: 15px;
+    border-radius: 25px;
+    border-style: none;
+    background-color: #aaaaaa;
+    margin-right: 8px;
+  }
+
+  .change-password-input:focus{
+    background-color: white;
+    outline: none;
+  }
+
+  #change-button {
+    border:none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #cacaca;
+  }
+
+  #change-button:hover {
+    background-color: #aaaaaa;
   }
 
   #settings-delete-user {
-    background-color: #fffad0;
+    background-color: #dbdbdb;
     margin-top: 40px;
     padding: 10px;
+    border-radius: 5px;
   }
 
   #delete {
-    background-color: #e71f11;
+    color: #e71f11;
     height: 30px;
     width: 50%;
+    cursor: pointer;
+    border: red solid 2px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 1px;
+  }
+
+  #delete:hover {
+    box-shadow: 2px 2px 1px;
+  }
+
+  #delete:active {
+    box-shadow: 1px 1px 1px;
   }
 }

@@ -40,7 +40,7 @@
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: rgb(133, 79, 79);
+  background-color: rgb(121, 121, 121);
 }
 
 /* Style the tab content */
@@ -99,6 +99,23 @@
   width: 45%;
   height: 2em;
   margin: 1em;
+}
+
+.search-button {
+  height:100%;
+  width: 50px;
+  border-radius:25px;
+  background-color: #c7c7c7;
+  border-style:none;
+  cursor: pointer;
+}
+
+.search-button:hover{
+  background-color: white;
+}
+
+.search-button:active {
+  transform: translateY(2px);
 }
 
 .logo {
@@ -163,6 +180,23 @@
   max-height: 300px;
 }
 
+@keyframes poster-zoom {
+  0%{
+    scale:1;
+    z-index:5;
+  }
+  100% {
+    scale: 1.1;
+    z-index:5;
+  }
+}
+
+.movie-poster:hover {
+  animation-name: poster-zoom;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 .movie-item-plot-div {
   /* div */
   border: purple 4px solid;
@@ -177,7 +211,8 @@
 }
 
 .streaming-div {
-  background-color: #fffad0;
+  background-color: #dbdbdb;
+  padding-bottom:15px;
 }
 
 .tab-content {

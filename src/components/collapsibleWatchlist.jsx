@@ -265,13 +265,15 @@ const MovieItemTopDiv = styled.div`
   display: flex;
   flex: 1;
   // border: pink 4px solid;
+  border-radius:25px;
   margin: 8px;
   flex-direction: row;
   align-items: center;
   width: 100%;
   height: 3em;
   // background: cyan;
-  background-color: var(--color-light);
+  // background-color: var(--color-light);
+  background-color: #dbdbdb;
   // width: 80%;
 `;
 
@@ -289,7 +291,7 @@ const MovieItemDiv = styled.div`
 const MovieSearchForm = styled.form`
   display: flex;
   // border: green 4px solid;
-  background-color: var(--color-light);
+  // background-color: var(--color-light);
   margin: 4px;
   flex-direction: row;
   justify-content: center;
@@ -298,11 +300,22 @@ const MovieSearchForm = styled.form`
   width: 70vw;
   // flex:1;
 `;
-// const MovieSearchInput = styled.input`
-//   width: 45%;
-//   height: 2em;
-//   margin: 1em;
-// `;
+const MovieSearchInput = styled.input`
+  width: 45%;
+  height: 2em;
+  margin: 1em;
+  width: 70%;
+  height: 40px;
+  padding: 4px;
+  padding-left: 15px;
+  border-radius: 25px;
+  border-style: none;
+  background-color: #c7c7c7;
+  &:focus{
+    background-color: white;
+    outline:none;
+  }
+`;
 
 const Logo = styled.img`
   height: 100%;
@@ -312,13 +325,22 @@ const Logo = styled.img`
 const SmallLogo = styled.img`
   height: 1em;
   width: 1em;
+  cursor: pointer;
 `;
+
+// const MovieListDiv = styled.div`
+//     border: black 4px solid;
+//     margin: 2px;
+//     flex-direction: row;
+//     height: 3em;
+// `
 
 const StarDiv = styled.div`
   display: flex;
   flex-direction: row;
   margin: 3px;
   margin-top: 4px;
+  cursor: pointer;
 `;
 
 const MovieItemElementDiv = styled.div`
@@ -329,6 +351,7 @@ const MovieItemElementDiv = styled.div`
   margin: 8px;
   height: 2em;
   width: 2em;
+  cursor:pointer;
 `;
 
 const MovieItemDetailsDiv = styled.div`
@@ -351,11 +374,11 @@ const MovieItemDetailsPoster = styled.img`
 
 const MovieItemPlotDiv = styled.div`
   // border: var(--color-background-main) 4px solid;
-  background-color: var(--color-light);
+  background-color: #dbdbdb;
   flex: 1;
-  // max-width: 70%
+  max-width: 70%
   min-width: 70%;
-  margin: 4px;
+  // margin: 4px;
   padding: 1em;
 `;
 
