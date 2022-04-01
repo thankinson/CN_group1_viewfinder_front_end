@@ -11,7 +11,7 @@ const StarRating = ({ stars }) => {
     <StarDiv>
       {fiveStars &&
         fiveStars.map((item, index) => (
-          <SmallLogo src={Star} key={`Star${index}`} />
+          <SmallLogo src={Star} key={`Star${index}`} alt="★" />
         ))}
     </StarDiv>
   );
@@ -73,7 +73,7 @@ export const CollapsibleWatchlist = ({ user }) => {
         <MovieItemDiv>
           <MovieItemTopDiv>
             <MovieItemElementDiv onClick={() => setExpanded(!expanded)}>
-              <SmallLogo src={TriangleFill} />
+              <SmallLogo src={TriangleFill} alt="▼" />
             </MovieItemElementDiv>
             <MovieItemTitle>
               {movie.title} (
@@ -95,7 +95,7 @@ export const CollapsibleWatchlist = ({ user }) => {
                 // setRemoveFlag(!removeFlag);
               }}
             >
-              <Logo src={Star} />
+              <Logo src={Star} alt="★" />
             </MovieItemElementDiv>
           </MovieItemTopDiv>
           <MovieItemDetailsDiv>
@@ -188,7 +188,7 @@ export const CollapsibleWatchlist = ({ user }) => {
         <MovieItemDiv>
           <MovieItemTopDiv>
             <MovieItemElementDiv onClick={() => setExpanded(!expanded)}>
-              <SmallLogo src={TriangleFill} />
+              <SmallLogo src={TriangleFill} alt="▼" />
             </MovieItemElementDiv>
             <MovieItemTitle>
               {movie.title} (
@@ -210,7 +210,7 @@ export const CollapsibleWatchlist = ({ user }) => {
                 // setRemoveFlag(!removeFlag);
               }}
             >
-              <Logo src={Star} />
+              <Logo src={Star} alt="★" />
             </MovieItemElementDiv>
           </MovieItemTopDiv>
         </MovieItemDiv>
